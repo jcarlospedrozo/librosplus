@@ -27,6 +27,6 @@
             </div>
         </div>
         <hr>
-        <p class="footer_copy">Libros Plus - 2020</p>
+        <p class="footer-copy">Libros Plus - 2020</p>
     </div>
 </div>

@@ -9,9 +9,9 @@ $categorias = ControladorCategorias::ctrMostrarCategorias();
             <?php foreach ($categorias as $key => $value): ?>
                 <div class="col-3">
                     <img src="views/img/category-1.jpg" alt="">
-                    <div class="datos_categoria">
-                        <h3 class="nombre_categoria"><?php echo $value['nombreCategoria']?></h3>
-                        <a href="<?php echo $ruta.$value["nombreCategoria"]; ?>" class="btn btn_categoria">Ver todo</a>
+                    <div class="datos-categoria">
+                        <h3 class="nombre-categoria"><?php echo $value['nombreCategoria']?></h3>
+                        <a href="<?php echo $ruta.$value["nombreCategoria"]; ?>" class="btn btn-categoria">Ver todo</a>
                     </div>
                 </div>
             <?php endforeach?>

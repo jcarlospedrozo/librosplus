@@ -29,7 +29,7 @@ nav{
     font-size: 25px;
 }
 
-a .img_logo{
+a .img-logo{
     margin: 10px 10px 0 0;
 }
 
@@ -41,10 +41,6 @@ nav ul{
 nav ul li{
     display: inline-block;
     margin-right: 20px;
-}
-
-.nav__user{
-    font-size: 1.5rem;
 }
 
 a{
@@ -139,11 +135,11 @@ header{
 }
 
 
-.datos_categoria{
+.datos-categoria{
     text-align: center;
 }
 
-.btn_categoria{
+.btn-categoria{
     margin: 10px 0;
 }
 
@@ -242,11 +238,11 @@ ul{
     margin: 20px 0;
 }
 
-.footer_copy{
+.footer-copy{
     text-align: center;
 }
 
-.nav_menu{
+.nav-menu{
     font-size: 1.5rem;
     margin-left: 20px;
     display: none;
@@ -259,6 +255,72 @@ ul{
 
 select{
     border: 1px solid #ff523b;
+    padding: 5px;
+}
+
+select:focus{
+    outline: none;
+}
+
+.page-btn{
+    margin: 0 auto 80px;
+}
+
+.page-btn span{
+    display: inline-block;
+    border: 1px solid #ff523b;
+    margin-left: 10px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+}
+
+.page-btn span:hover{
+    background: #ff523b;
+    color: #fafaff;
+}
+
+.side-menu{
+    height: 400px;
+    width: 15%;
+    font-size: 14px;
+    float: left;
+    z-index: 2;
+    background-color: #f0f1f3;
+    margin-top: 4rem;
+}
+
+.side-menu ul{
+    margin-left: 10px;
+}
+
+.side-menu ul li{
+    list-style-type: none;
+    font-weight: bold;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.side-menu ul li:hover{
+    color: #ff523b;
+}
+
+.side-menu ul li ul{
+    display: none;
+    z-index: 10;
+    top: 77px;
+}
+
+.side-menu ul li:hover ul{
+    display: block;
+    height: 400px;
+    margin-left: 14%;
+    padding: 0 100px 10px 10px;
+    position: fixed;
+    background-color: #f0f1f3;
+    box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.5);
 }
 
 @media only screen and (max-width: 800px){
@@ -280,7 +342,7 @@ select{
     }
 
 
-    .nav_menu{
+    .nav-menu{
         display: block;
         cursor: pointer;
     }
@@ -295,7 +357,7 @@ select{
         flex-basis: 100%;
     }
 
-    .imagen, .nav_logo{
+    .imagen, .nav-logo{
         display: none;
     }
 
