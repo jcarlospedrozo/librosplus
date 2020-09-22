@@ -7,7 +7,7 @@ $categorias = ControladorCategorias::ctrMostrarCategorias();
     <div class="small-container">
         <div class="row">
             <?php foreach ($categorias as $key => $value): ?>
-                <div class="col-3">
+                <div class="col-4">
                     <img src="<?php echo $servidor.$value["imagenCategoria"] ?>" alt="">
                     <div class="datos-categoria">
                         <h3 class="nombre-categoria"><?php echo $value['nombreCategoria']?></h3>

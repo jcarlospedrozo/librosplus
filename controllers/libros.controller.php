@@ -1,9 +1,10 @@
 <?php
 
 Class ControladorLibros{
-	static public function ctrMostrarLibros(){
-		$tabla = "libros";
-		$respuesta = ModeloLibros::mdlMostrarLibros($tabla);
+	static public function ctrMostrarLibros($valor){
+		$tabla1 = "categorias";
+		$tabla2 = "libros";
+		$respuesta = ModeloLibros::mdlMostrarLibros($tabla1, $tabla2, $valor);
 		return $respuesta;
 	}
 }
