@@ -123,6 +123,15 @@ ul li a:hover{
     margin: 5px 0;
 }
 
+.title{
+    text-align: center;
+    margin: 0 auto 80px;
+    line-height: 60px;
+    color: #101010;
+    font-weight: bold;
+    font-size: 25px;
+}
+
 .libros{
     min-width: 200px;
     margin-bottom: 50px;
@@ -170,13 +179,18 @@ ul li a:hover{
     padding: 60px 0 20px;
 }
 
-.footer h3{
+.footer1 h3, .footer2 h3, .footer3 h3, .footer4 h3{
     margin-bottom: 20px;
     font-size: 18px;
     font-weight: bold;
+    color: #f0f1f3;
 }
 
-.footer-col-2 img{
+.footer1, .footer2, .footer3, .footer4{
+    padding: 0 25px;
+}
+
+.footer2 img{
     width: 180px;
     margin-bottom: 20px;
 }

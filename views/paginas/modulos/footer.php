@@ -1,15 +1,15 @@
 <div class="footer">
     <div class="container">
         <div class="row">
-            <div class="footer-col-1">
+            <div class="footer1 col-3">
                 <h3>Libros Plus</h3>
                 <p>Desde la comodidad de tu casa</p>
             </div>
-            <div class="footer-col-2">
+            <div class="footer2 col-3">
                 <img src="views/img/logo1.png" alt="" class="img-fluid" width="200px">
                 <p>Desde la comodidad de tu casa</p>
             </div>
-            <div class="footer-col-3">
+            <div class="footer3 col-3">
                 <h3>Nuestros servicios</h3>
                 <ul>
                     <li>Contactanos</li>
@@ -17,7 +17,7 @@
                     <li>Planes</li>
                 </ul>
             </div>
-            <div class="footer-col-4">
+            <div class="footer4 col-3">
                 <h3>Síguenos</h3>
                 <ul>
                     <li>Facebook</li>
