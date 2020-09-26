@@ -248,6 +248,21 @@ ul{
     background: #ff523b;
     color: #fafaff;
 }
+
+.single-product{
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+.single-product .col-6 img{
+    margin-left: 50px;
+}
+
+
+.single-product h4{
+    font-size: 20px;
+    
+}
 /* 
 nav{
     flex: 1;

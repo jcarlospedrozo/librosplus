@@ -38,7 +38,7 @@ if(isset($_GET["pagina"])){
 		
 	}
 
-	if($_GET["pagina"] == "todos" /*|| $_GET["pagina"] == "perfil"*/){
+	if($_GET["pagina"] == "informacion"){
 
 		include "paginas/".$_GET["pagina"].".php";
 		

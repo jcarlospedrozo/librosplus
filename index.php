@@ -12,5 +12,8 @@ require_once "models/libros.modelo.php";
 require_once "controllers/autores.controller.php";
 require_once "models/autores.modelo.php";
 
+require_once "controllers/detallelibro.controller.php";
+require_once "models/detallelibro.modelo.php";
+
 $plantilla = new ControladorPlantilla();
 $plantilla -> ctrPlantilla();
