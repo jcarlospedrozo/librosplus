@@ -19,7 +19,7 @@ $detallesLibro = ControladorDetalleLibro::ctrMostrarDetalleLibro($valor);
                 <div class="col-6">
                     <!-- <input type="text" class="form-control fecha-reserva" placeholder="Entrada"> -->
                     <div class="input-group mb-2">
-                        <input type="text" class="form-control fecha-reserva desde" id="inlineFormInputGroup" placeholder="Desde" required>
+                        <input type="text" class="form-control fecha-reserva desde" name="fecha-desde" placeholder="Desde" required>
                         <div class="input-group-prepend">
                             <div class="input-group-text"><i class='bx bx-calendar'></i></div>
                         </div>
@@ -27,7 +27,7 @@ $detallesLibro = ControladorDetalleLibro::ctrMostrarDetalleLibro($valor);
                 </div>
                 <div class="col-6">
                     <div class="input-group mb-2">
-                        <input type="text" class="form-control fecha-reserva hasta" id="inlineFormInputGroup" placeholder="Hasta" readonly required>
+                        <input type="text" class="form-control fecha-reserva hasta" name="fecha-salida" placeholder="Hasta" readonly required>
                         <div class="input-group-prepend">
                             <div class="input-group-text"><i class='bx bx-calendar'></i></div>
                         </div>
