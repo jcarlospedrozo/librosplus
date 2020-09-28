@@ -15,7 +15,6 @@ $libros = ControladorLibros::ctrMostrarLibros($valor);
                     <div class="categorias-list">
                         <ul class="list">
                             <?php foreach ($categorias as $key => $value): ?>
-                                <input type="hidden" name="" value="">
                                 <li class="items">
                                     <a class="categoriaslibros" href="<?php echo $ruta.$value["nombreCategoria"]; ?>"><?php echo $value["nombreCategoria"]?></a>
                                 </li>
@@ -30,7 +29,7 @@ $libros = ControladorLibros::ctrMostrarLibros($valor);
                 <?php foreach ($libros as $key => $value): ?>
                         <div class="col-4 libros">
                             <form action="<?php echo $ruta; ?>informacion" name="nombre-libro" method="post">
-                                <input type="hidden" name="nombre-libro" value="<?php echo $value["nombreLibro"]; ?>">
+                                <input type="hidden" name="nombre-libro" value="<?php echo $value["idLibro"]; ?>">
                                 <img src="views/img/product-5.jpg" alt="">
                                 <h3><?php echo $value["nombreLibro"]?></h3>
                                 <p><?php echo $value["nombreAutor"]?></p>
