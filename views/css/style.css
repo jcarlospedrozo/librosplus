@@ -46,12 +46,9 @@ a{
 }
 
 ul li a:hover{
-    color: #ff523b;
+    color:#0092cc;
 }
 
-/* .titulo{
-    margin-top: 120px;
-} */
 .col-6 img{
     max-width: 100%;
     padding: 50px 0;
@@ -67,7 +64,7 @@ ul li a:hover{
 
 .btn{
     display: inline-block;
-    background-color: #ff523b;
+    background-color:#0092cc;
     color: #ffffff;
     padding: 8px 30px;
     margin: 30px 0;
@@ -76,7 +73,7 @@ ul li a:hover{
 }
 
 .btn:hover{
-    background-color: #d2321e;
+    background-color:#0080b3;
     color: #ffffff;
 }
 
@@ -88,7 +85,11 @@ ul li a:hover{
     margin-top: 50px;
 }
 
-.home{
+.login .container .row{
+    margin-top: 50px;
+}
+
+.home, .login{
     background: #f0f1f3;
     height: 100vh;
 }
@@ -100,6 +101,10 @@ ul li a:hover{
 .col-4 img{
     width: 100%;
     margin-bottom: 1rem;
+    background: #f0f1f3;
+}
+
+.foto-libro{
     background: #f0f1f3;
 }
 
@@ -230,12 +235,12 @@ ul{
 }
 
 .active{
-    color: #ff523b;
+    color:#0092cc;
 }
 
 .page-btn span{
     display: inline-block;
-    border: 1px solid #ff523b;
+    border: 1px solid#0092cc;
     margin-left: 10px;
     width: 40px;
     height: 40px;
@@ -245,9 +250,12 @@ ul{
 }
 
 .page-btn span:hover{
-    background: #ff523b;
+    background: #0092cc;
     color: #fafaff;
 }
+
+/*color naranja #ff523b
+naranja hover  #d2321e*/
 
 .single-product{
     margin-bottom: 80px;
@@ -263,7 +271,23 @@ ul{
 
 .single-product h4{
     font-size: 20px;
-    
+}
+
+.fc-unthemed .fc-today{
+    background: rgba(255, 255, 255, 0) !important;
+}
+
+.fc-unthemed th {
+    color: #020202;
+    background-color: #ffffff;
+}
+
+.fc-button{
+    background: #101010;
+}
+
+.fc-icon{
+    color: #ffffff;
 }
 /* 
 nav{

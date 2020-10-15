@@ -28,11 +28,12 @@ $libros = ControladorLibros::ctrMostrarLibros($valor);
             <div class="row">
                 <?php foreach ($libros as $key => $value): ?>
                         <div class="col-4 libros">
-                            <form action="<?php echo $ruta; ?>informacion" name="nombre-libro" method="post">
-                                <input type="hidden" name="nombre-libro" value="<?php echo $value["idLibro"]; ?>">
-                                <img src="views/img/product-5.jpg" alt="">
+                            <form action="<?php echo $ruta; ?>informacion" method="post">
+                                <input type="hidden" name="id-libro" value="<?php echo $value["idLibro"]; ?>">
+                                <img src="<?php echo $servidor.$value["fotoLibro"] ?>" alt="">
                                 <h3><?php echo $value["nombreLibro"]?></h3>
                                 <p><?php echo $value["nombreAutor"]?></p>
+                                <input type="hidden" id="ruta" name="ruta" value="<?php echo $value["nombreCategoria"]; ?>">
                                 <input type="submit" class="btn" value="Ver detalles">
                             </form>
                         </div>

@@ -12,6 +12,7 @@ $servidor = ControladorRuta::ctrServidor();
     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 	<link rel="stylesheet" href="views/js/datepicker/css/bootstrap-datepicker.css">
+	<link rel="stylesheet" href="views/css/fullcalendar.css">
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
 	<link rel="stylesheet" href="views/css/style.css">
 
@@ -19,7 +20,12 @@ $servidor = ControladorRuta::ctrServidor();
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+	<script src="views/js/moment.min.js"></script>
+	<script src="views/js/fullcalendar/fullcalendar.min.js"></script>
+	<script src="views/js/fullcalendar/fullcalendar.js"></script>
+	<script src="views/js/fullcalendar/locale/es.js"></script>
 	<script src="views/js/datepicker/js/bootstrap-datepicker.min.js"></script>
+	<script src="views/js/datepicker/locales/bootstrap-datepicker.es.min.js"></script>
 </head>
 <body>
 <?php
@@ -40,7 +46,7 @@ if(isset($_GET["pagina"])){
 		
 	}
 
-	if($_GET["pagina"] == "informacion"){
+	if($_GET["pagina"] == "informacion" || $_GET["pagina"] == "reservas" || $_GET["pagina"] == "login"){
 
 		include "paginas/".$_GET["pagina"].".php";
 		
@@ -74,7 +80,10 @@ include "paginas/modulos/footer.php";
 //include "paginas/modules/modal.php";
 
 ?>
+<input type="hidden" value="<?php echo $ruta; ?>" id="urlPrincipal">
+<input type="hidden" value="<?php echo $servidor; ?>" id="urlServidor">
 
+<script src="views/js/plantilla.js"></script>
 <script src="views/js/libros-shopping.js"></script>
 <script src="views/js/reserva.js"></script>
 </body>
