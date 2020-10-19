@@ -101,7 +101,7 @@ PÁGINAS
 =============================================*/
 
 
-// include "paginas/modulos/footer.php";
+include "paginas/modulos/footer.php";
 
 
 
