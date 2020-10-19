@@ -11,7 +11,7 @@ $categorias = ControladorCategorias::ctrMostrarCategorias();
                     <img src="<?php echo $servidor.$value["imagenCategoria"] ?>" alt="">
                     <div class="datos-categoria">
                         <h3 class="nombre-categoria"><?php echo $value['nombreCategoria']?></h3>
-                        <a href="<?php echo $ruta.$value["nombreCategoria"]; ?>" class="boton boton-categoria">Ver todo</a>
+                        <a href="<?php echo $ruta.$value["nombreCategoria"]; ?>" class="btn btn-primary boton">Ver todo</a>
                     </div>
                 </div>
             <?php endforeach?>

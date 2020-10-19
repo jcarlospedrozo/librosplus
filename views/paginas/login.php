@@ -81,7 +81,7 @@ if($cliente->getAccessToken()){
                         <a href="#">¿Olvidaste tu contraseña?</a>
                         <label class="form-check-label" for="exampleCheck1">¿No tienes cuenta registrada? <a href="<?php echo $ruta; ?>register">Regístrate</a></label>
                     </div>
-                    <input type="submit" class="boton btn btn-lg btn-block" value="Ingresar">
+                    <input type="submit" class="btn btn-primary boton btn-lg btn-block" value="Ingresar">
 
                     <?php
                     $ingresoUsuario = new ControladorUsuarios();

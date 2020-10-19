@@ -182,6 +182,25 @@ $usuario = ControladorUsuarios::ctrMostrarUsuario($item, $valor);
 
 					</div>
 
+					<div class="col-12">
+						<form action="<?php echo $ruta. 'perfil'; ?>" method="POST">
+							<script
+								src="https://www.mercadopago.com.co/integrations/v1/web-tokenize-checkout.js"
+								data-public-key="TEST-245b0f0a-1e95-469f-823c-bb75e059900c"
+								data-transaction-amount="10000.00">
+							</script>
+						</form>
+						<?php 
+							if (isset($_REQUEST["token"])) {
+								$token = $_REQUEST["token"];
+								$payment_method_id = $_REQUEST["payment_method_id"];
+								$installments = $_REQUEST["installments"];
+								$issuer_id = $_REQUEST["issuer_id"];
+							}
+						?>
+
+					</div>
+
 					<div class="col-6 d-none d-lg-block"></div>
 
 					<div class="col-12 mt-3">

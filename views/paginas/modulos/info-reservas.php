@@ -124,7 +124,7 @@ if (isset($_POST["id-libro"])) {
                                         <div class="input-group-text"><i class='bx bx-calendar'></i></div>                                
                                     </div>
                                 </div>
-                                <input type="submit" class="btn boton" value="Ver disponibilidad">
+                                <input type="submit" class="btn btn-primary boton" value="Ver disponibilidad">
                             </div>
 
 				</div>
@@ -172,16 +172,16 @@ if (isset($_POST["id-libro"])) {
 
 						<?php if($_SESSION["validarSesion"] == "ok"): ?>
 
-							<a href="<?php echo $ruta;?>perfil">
-								<button class="boton btn btn-lg">Confirmar</button>
+							<a href="<?php echo $ruta; ?>perfil">
+								<button class="btn btn-primary boton btn-lg">Confirmar</button>
 							</a>
 
 						<?php endif ?>
 
 					<?php else: ?>
 				
-						<a href="<?php echo $ruta;?>login">
-							<button class="boton btn btn-lg">Confirmar</button>
+						<a href="<?php echo $ruta; ?>login">
+							<button class="btn btn-primary boton btn-lg">Confirmar</button>
 						</a>
 
 					<?php endif ?>

@@ -34,7 +34,7 @@ $libros = ControladorLibros::ctrMostrarLibros($valor);
                                 <h3><?php echo $value["nombreLibro"]?></h3>
                                 <p><?php echo $value["nombreAutor"]?></p>
                                 <input type="hidden" id="ruta" name="ruta" value="<?php echo $value["nombreCategoria"]; ?>">
-                                <input type="submit" class=" btn boton" value="Ver detalles">
+                                <input type="submit" class="btn btn-primary boton" value="Ver detalles">
                             </form>
                         </div>
                 <?php endforeach ?>

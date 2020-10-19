@@ -53,7 +53,7 @@ if(isset($_GET["code"])){
                         <label for="exampleInputPassword1">Contraseña</label>
                         <input type="password" class="form-control" id="exampleInputPassword1"  name="registroPass" required>
                     </div>
-                    <input type="submit" class="boton btn btn-lg btn-block" value="Regístrate">
+                    <input type="submit" class="btn btn-primary boton btn-lg btn-block" value="Regístrate">
                     <?php
                     $registroUsuario = new ControladorUsuarios();
                     $registroUsuario->ctrRegistroUsuario();
