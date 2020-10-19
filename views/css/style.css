@@ -54,7 +54,7 @@ ul li a:hover{
     padding: 50px 0;
 }
 
-.col-6 h1{
+.titulo-principal{
     font-size: 60px;
     line-height: 60px;
     margin: 25px 0;
@@ -62,7 +62,7 @@ ul li a:hover{
     color: #101010;
 }
 
-.btn{
+.boton{
     display: inline-block;
     background-color:#0092cc;
     color: #ffffff;
@@ -72,9 +72,10 @@ ul li a:hover{
     transition: 0.5s;
 }
 
-.btn:hover{
+.boton:hover{
     background-color:#0080b3;
     color: #ffffff;
+    text-decoration: none;
 }
 
 .row{
@@ -89,9 +90,45 @@ ul li a:hover{
     margin-top: 50px;
 }
 
-.home, .login{
+.home{
     background: #f0f1f3;
     height: 100vh;
+}
+
+.login{
+    margin-top: -28px;
+}
+
+.fila-ingresar{
+    margin-bottom: 48px;
+}
+
+.fila-registro{
+    margin-bottom: 20px;
+}
+
+.register{
+    padding-top: 15px;
+}
+
+.ingresar{
+    padding: 0 100px;
+}
+
+.ingresar h1{
+    line-height: 60px;
+    margin: 25px 0;
+    font-weight: bold;
+    color: #101010;
+}
+
+.form-group a{
+    text-decoration: none;
+    color: #0092cc;
+}
+
+.form-group a:hover{
+    color: #03719c;
 }
 
 .categorias{
@@ -124,7 +161,7 @@ ul li a:hover{
     font-weight: bold;
 }
 
-.btn-categoria{
+.boton-categoria{
     margin: 5px 0;
 }
 

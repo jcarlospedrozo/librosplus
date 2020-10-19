@@ -38,7 +38,7 @@ $detallesLibro = ControladorDetalleLibro::ctrMostrarDetalleLibro($valor);
                         </div>
                     </div>
                 </div>
-                <input type="submit" class="btn btn-reserva" value="Ver disponibilidad">
+                <input type="submit" class="btn boton" value="Ver disponibilidad">
                 <input type="hidden" id="ruta" name="ruta" value="<?php echo $value["nombreCategoria"]; ?>">
             </form>
         <?php endforeach ?>

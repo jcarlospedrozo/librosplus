@@ -1,4 +1,5 @@
 <?php
+session_start();
 $ruta = ControladorRuta::ctrRuta();
 $servidor = ControladorRuta::ctrServidor();
 ?>
@@ -26,10 +27,13 @@ $servidor = ControladorRuta::ctrServidor();
 	<script src="views/js/fullcalendar/locale/es.js"></script>
 	<script src="views/js/datepicker/js/bootstrap-datepicker.min.js"></script>
 	<script src="views/js/datepicker/locales/bootstrap-datepicker.es.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 <?php
 include 'paginas/modulos/header.php';
+// include "paginas/modulos/modal.php";
+
 if(isset($_GET["pagina"])){
 
 	$rutasCategorias = ControladorCategorias::ctrMostrarCategorias();
@@ -37,16 +41,38 @@ if(isset($_GET["pagina"])){
 	$validarRuta = "";
 
 	foreach ($rutasCategorias as $key => $value) {
-
 		if($_GET["pagina"] == $value["nombreCategoria"]){
-
 			$validarRuta = "todos";
-
 		}
-		
 	}
 
-	if($_GET["pagina"] == "informacion" || $_GET["pagina"] == "reservas" || $_GET["pagina"] == "login"){
+	$item = "emailEncriptado";
+	$valor = $_GET["pagina"];
+
+	$validarCorreo = ControladorUsuarios::ctrMostrarUsuario($item, $valor);
+
+	if($validarCorreo["emailEncriptado"] == $_GET["pagina"]){
+
+		$id = $validarCorreo["idUsuario"];
+		$item = "verificacion";
+		$valor = 1;
+
+		$verificarUsuario = ControladorUsuarios::ctrActualizarUsuario($id, $item, $valor);
+		if($verificarUsuario == "ok"){
+			echo'<script>
+					swal({
+						icon:"success",
+						title: "¡Correcto!",
+						text: "¡Su cuenta ha sido verificada, ya puede ingresar al sistema!",
+						confirm: "Cerrar"
+					})
+				</script>';
+			return;
+		}
+	}
+
+
+	if($_GET["pagina"] == "informacion" || $_GET["pagina"] == "reservas" || $_GET["pagina"] == "login" || $_GET["pagina"] == "register" || $_GET["pagina"] == "perfil"  || $_GET["pagina"] == "salir"){
 
 		include "paginas/".$_GET["pagina"].".php";
 		
@@ -75,9 +101,9 @@ PÁGINAS
 =============================================*/
 
 
-include "paginas/modulos/footer.php";
+// include "paginas/modulos/footer.php";
 
-//include "paginas/modules/modal.php";
+
 
 ?>
 <input type="hidden" value="<?php echo $ruta; ?>" id="urlPrincipal">
@@ -86,5 +112,25 @@ include "paginas/modulos/footer.php";
 <script src="views/js/plantilla.js"></script>
 <script src="views/js/libros-shopping.js"></script>
 <script src="views/js/reserva.js"></script>
+<script src="views/js/usuarios.js"></script>
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '770126790213592',
+      xfbml      : true,
+      version    : 'v8.0'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 </body>
 </html>

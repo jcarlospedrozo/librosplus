@@ -18,5 +18,10 @@ require_once "models/detallelibro.modelo.php";
 require_once "controllers/reservas.controller.php";
 require_once "models/reservas.modelo.php";
 
+require_once "controllers/usuarios.controller.php";
+require_once "models/usuarios.modelo.php";
+
+require_once "vendor/autoload.php";
+
 $plantilla = new ControladorPlantilla();
 $plantilla -> ctrPlantilla();

@@ -6,7 +6,7 @@ class ControladorRuta{
 	}
 	static public function ctrServidor(){
 
-		return "http://localhost/librosplus/backend";
+		return "http://localhost/librosplus/backend/";
 
 	}
 }

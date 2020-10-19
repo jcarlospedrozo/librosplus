@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-6">
-                <h1>Libros Plus</h1>
+                <h1 class="titulo-principal">Libros Plus</h1>
                 <p>Libros Plus es un sistema donde puedes acceder
                 a un <br>sinnúmero de obras literarias y textos sin necesidad de <br>comprarlos
                 y construir una experiencia de lectura <br>particular y comunitaria.</p>
