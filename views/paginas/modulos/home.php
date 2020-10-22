@@ -9,7 +9,7 @@
                 <!-- <a href="" class="btn">Ver mas</a> -->
             </div>
             <div class="col-6 imagen">
-                <img src="views/img/undraw_book_lover_mkck.svg" alt="">
+                <img src="views/img/undraw_studying_s3l7.svg" alt="">
             </div>
         </div>
     </div>

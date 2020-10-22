@@ -8,4 +8,10 @@ Class ControladorLibros{
 		$respuesta = ModeloLibros::mdlMostrarLibros($tabla1, $tabla2, $tabla3, $valor);
 		return $respuesta;
 	}
+
+	static public function ctrMostrarLibro($valor){
+		$tabla = "libros";
+		$respuesta = ModeloLibros::mdlMostrarLibro($tabla, $valor);
+		return $respuesta;
+	}
 }

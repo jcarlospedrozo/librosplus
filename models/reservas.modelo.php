@@ -20,4 +20,38 @@ Class ModeloReservas{
 		$stmt -> close();
 		$stmt = null;
 	}
+
+	static public function mdlGuardarReserva($tabla, $datos)
+	{
+		// $connection = Conexion::conectar();
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(idLibro, idUsuario, pagoReserva, transaccionReserva, codigoReserva, fechaDespacho, fechaDevolucion) VALUES (:idLibro, :idUsuario, :pagoReserva, :transaccionReserva, :codigoReserva, :fechaDespacho, :fechaDevolucion)");
+
+		$stmt->bindParam(":idLibro", $datos["idLibro"], PDO::PARAM_STR);
+		$stmt->bindParam(":idUsuario", $datos["idUsuario"], PDO::PARAM_STR);
+		$stmt->bindParam(":pagoReserva", $datos["pagoReserva"], PDO::PARAM_STR);
+		$stmt->bindParam(":transaccionReserva", $datos["transaccionReserva"], PDO::PARAM_STR);
+		$stmt->bindParam(":codigoReserva", $datos["codigoReserva"], PDO::PARAM_STR);
+		$stmt->bindParam(":fechaDespacho", $datos["fechaDespacho"], PDO::PARAM_STR);
+		$stmt->bindParam(":fechaDevolucion", $datos["fechaDevolucion"], PDO::PARAM_STR);
+
+		if($stmt->execute()){
+			// $id = $connection->lastInsertId();
+			// return $id;
+			return "ok";
+		}else{
+			return "error";
+		}
+
+		$stmt->close();
+		$stmt = null;
+	}
+
+	static public function mdlMostrarReservasUsuario($tabla, $valor){
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE idUsuario = :idUsuario ORDER BY idReserva DESC LIMIT 5");
+		$stmt -> bindParam(":idUsuario", $valor, PDO::PARAM_INT);
+		$stmt -> execute();
+		return $stmt -> fetchAll();
+		$stmt -> close();
+		$stmt = null;
+	}
 }

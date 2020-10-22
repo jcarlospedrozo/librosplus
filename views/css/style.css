@@ -122,12 +122,17 @@ ul li a:hover{
     color: #101010;
 }
 
-.form-group a{
+.form-group a, .reservas{
     text-decoration: none;
     color: #0092cc;
 }
 
 .form-group a:hover{
+    color: #03719c;
+}
+
+.reservas:hover{
+    text-decoration: none;
     color: #03719c;
 }
 

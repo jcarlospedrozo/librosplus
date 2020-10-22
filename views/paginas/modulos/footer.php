@@ -3,10 +3,10 @@
         <div class="row">
             <div class="footer1 col-3">
                 <h3>Libros Plus</h3>
-                <p>Desde la comodidad de tu casa</p>
+                <!-- <p>Desde la comodidad de tu casa</p> -->
             </div>
             <div class="footer2 col-3">
-                <img src="views/img/logo1.png" alt="" class="img-fluid" width="200px">
+                <img src="views/img/footer.png" alt="" class="img-fluid" width="200px">
                 <p>Desde la comodidad de tu casa</p>
             </div>
             <div class="footer3 col-3">
@@ -14,7 +14,7 @@
                 <ul>
                     <li>Contactanos</li>
                     <li>Libros</li>
-                    <li>Planes</li>
+                    <li>Blog</li>
                 </ul>
             </div>
             <div class="footer4 col-3">

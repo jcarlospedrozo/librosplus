@@ -50,7 +50,7 @@ if($cliente->getAccessToken()){
     <div class="container">
         <div class="row fila-ingresar">
             <div class="col-6 imagen">
-                <img src="views/img/undraw_book_lover_mkck.svg" alt="">
+                <img src="views/img/undraw_studying_s3l7.svg" alt="">
             </div>
             <div class="col-6 ingresar">
                 <h1 class="text-center">Ingresar</h1>
@@ -78,7 +78,7 @@ if($cliente->getAccessToken()){
                         <input type="password" class="form-control" name="ingresoPass" id="exampleInputPassword1" required>
                     </div>
                     <div class="form-group">
-                        <a href="#">¿Olvidaste tu contraseña?</a>
+                        <a href="" data-toggle="modal" data-target="#recuperarContrasena">¿Olvidaste tu contraseña?</a>
                         <label class="form-check-label" for="exampleCheck1">¿No tienes cuenta registrada? <a href="<?php echo $ruta; ?>register">Regístrate</a></label>
                     </div>
                     <input type="submit" class="btn btn-primary boton btn-lg btn-block" value="Ingresar">
@@ -89,6 +89,40 @@ if($cliente->getAccessToken()){
                     ?>
                 </form>
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="recuperarContrasena" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Recuperar contraseña</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form action="" method="post">
+                <!-- <p class="text-muted">Escriba su correo electrónico</p> -->
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Correo Electrónico</label>
+                    <input type="email" class="form-control" name="emailRecuperarPassword" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                </div>
+                <input type="submit" class="btn btn-primary" value="Enviar">
+
+                <?php
+
+                $recuperarPassword = new ControladorUsuarios();
+                $recuperarPassword -> ctrRecuperarPassword();
+
+                ?>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
         </div>
     </div>
 </div>

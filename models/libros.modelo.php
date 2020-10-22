@@ -11,4 +11,13 @@ Class ModeloLibros{
 		$stmt -> close();
 		$stmt = null;
 	}
+
+	static public function mdlMostrarLibro($tabla, $valor){
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE idLibro = :idLibro");
+		$stmt -> bindParam(":idLibro", $valor, PDO::PARAM_INT);
+		$stmt -> execute();
+		return $stmt -> fetch();
+		$stmt -> close();
+		$stmt = null;
+	}
 }

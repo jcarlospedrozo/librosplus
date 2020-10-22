@@ -45,6 +45,7 @@ if($(".infoReservas").html() != undefined){
         success:function(respuesta){
             if(respuesta.length == 0){
                 $('#calendar').fullCalendar({
+                    defaultDate: fechaDesde,
                     header: {
                         left: 'prev',
                         center: 'title',
@@ -124,6 +125,7 @@ if($(".infoReservas").html() != undefined){
                 }
 
                 $('#calendar').fullCalendar({
+                    defaultDate: fechaDesde,
                     header: {
                         left: 'prev',
                         center: 'title',
@@ -166,10 +168,41 @@ if($(".infoReservas").html() != undefined){
             success:function(respuesta){
                 if (!respuesta) {
                     $(".codigoReserva").html(codigoReserva)
+                    $(".pagarReserva").attr("codigoReserva", codigoReserva)
                 } else {
                     $(".codigoReserva").html(codigoReserva + codigoAleatorio(caracteres, 3))
+                    $(".pagarReserva").attr("codigoReserva", codigoReserva + codigoAleatorio(caracteres, 3))
                 }
             }
         })
     }
 }
+
+/*=============================================
+FUNCIÓN PARA GENERAR COOKIES
+=============================================*/
+
+function crearCookie(nombre, valor, diasExpedicion){
+    var hoy = new Date();
+    hoy.setTime(hoy.getTime() + (diasExpedicion * 24 * 60 * 60 * 1000));
+    var fechaExpedicion = "expires=" + hoy.toUTCString();
+    document.cookie = nombre + "=" + valor + "; " + fechaExpedicion;
+}
+
+$(".pagarReserva").click(function(){
+    var idLibro = $(this).attr("idLibro");
+    var imgLibro = $(this).attr("imgLibro");
+    var nombreLibro = $(this).attr("nombreLibro");
+    var pagoReserva = $(this).attr("pagoReserva");
+    var codigoReserva = $(this).attr("codigoReserva");
+    var fechaIngreso = $(this).attr("fechaIngreso");
+    var fechaSalida = $(this).attr("fechaSalida");
+  
+    crearCookie("idLibro", idLibro, 1);
+    crearCookie("imgLibro", imgLibro, 1);
+    crearCookie("nombreLibro", nombreLibro, 1);
+    crearCookie("pagoReserva", pagoReserva, 1);
+    crearCookie("codigoReserva", codigoReserva, 1);
+    crearCookie("fechaIngreso", fechaIngreso, 1);
+    crearCookie("fechaSalida", fechaSalida, 1);
+})

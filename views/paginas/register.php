@@ -22,7 +22,7 @@ if(isset($_GET["code"])){
     <div class="container">
         <div class="row fila-registro">
             <div class="col-6 imagen">
-                <img src="views/img/undraw_book_lover_mkck.svg" alt="">
+                <img src="views/img/undraw_studying_s3l7.svg" alt="">
             </div>
             <div class="col-6 ingresar">
                 <h1 class="text-center">Registrarse</h1>
@@ -52,6 +52,9 @@ if(isset($_GET["code"])){
                     <div class="form-group">
                         <label for="exampleInputPassword1">Contraseña</label>
                         <input type="password" class="form-control" id="exampleInputPassword1"  name="registroPass" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-check-label" for="exampleCheck1">¿Ya tienes cuenta registrada? <a href="<?php echo $ruta; ?>login">Ingresar</a></label>
                     </div>
                     <input type="submit" class="btn btn-primary boton btn-lg btn-block" value="Regístrate">
                     <?php

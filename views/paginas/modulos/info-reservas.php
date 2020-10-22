@@ -54,8 +54,22 @@ if (isset($_POST["id-libro"])) {
 
 					<h6 class="float-right px-3">
 
+					<?php if(isset($_SESSION["validarSesion"])): ?>
+
+						<?php if($_SESSION["validarSesion"] == "ok"): ?>
+
+							<br>
+							<a href="<?php echo $ruta;  ?>perfil" class="reservas">Ver tus reservas</a>
+
+						<?php endif ?>
+
+					<?php else: ?>
+
 						<br>
-						<a href="<?php echo $ruta;  ?>perfil" style="color:#FFCC29">Ver tus reservas</a>
+						<a href="<?php echo $ruta;  ?>login" class="reservas">Ver tus reservas</a>
+
+					<?php endif ?>
+
 
 					</h6>
 
@@ -172,16 +186,32 @@ if (isset($_POST["id-libro"])) {
 
 						<?php if($_SESSION["validarSesion"] == "ok"): ?>
 
-							<a href="<?php echo $ruta; ?>perfil">
-								<button class="btn btn-primary boton btn-lg">Confirmar</button>
+							<a href="<?php echo $ruta; ?>perfil" class="pagarReserva"
+							idLibro="<?php echo $reservas[$indice]["idLibro"]; ?>"
+							imgLibro="<?php echo $servidor.$reservas[$indice]["fotoLibro"]; ?>"
+							nombreLibro="<?php echo $reservas[$indice]["nombreLibro"]; ?>"
+							pagoReserva="<?php echo ($precioReserva);?>"
+							codigoReserva=""
+							fechaIngreso="<?php echo $_POST["fecha-desde"];?>"
+							fechaSalida="<?php echo $_POST["fecha-hasta"];?>"
+							>
+								<button type="button"class="btn btn-primary boton btn-lg">Confirmar</button>
 							</a>
 
 						<?php endif ?>
 
 					<?php else: ?>
 				
-						<a href="<?php echo $ruta; ?>login">
-							<button class="btn btn-primary boton btn-lg">Confirmar</button>
+						<a href="<?php echo $ruta; ?>login" class="pagarReserva"
+						idLibro="<?php echo $reservas[$indice]["idLibro"]; ?>"
+						imgLibro="<?php echo $servidor.$reservas[$indice]["fotoLibro"]; ?>"
+						nombreLibro="<?php echo $reservas[$indice]["nombreLibro"]; ?>"
+						pagoReserva="<?php echo ($precioReserva);?>"
+						codigoReserva=""
+						fechaIngreso="<?php echo $_POST["fecha-desde"];?>"
+						fechaSalida="<?php echo $_POST["fecha-hasta"];?>"
+						>
+							<button type="button"class="btn btn-primary boton btn-lg">Confirmar</button>
 						</a>
 
 					<?php endif ?>
