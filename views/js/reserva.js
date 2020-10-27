@@ -2,7 +2,8 @@ $('.fecha-reserva.desde').datepicker({
     format: "yyyy-mm-dd",
     startDate: '0d',
     datesDisabled: '0d',
-	todayHighlight:true
+    todayHighlight:true,
+    language: "es"
 });
 
 $('.fecha-reserva.desde').change(function(){
