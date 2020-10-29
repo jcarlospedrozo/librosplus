@@ -16,7 +16,7 @@ $libros = ControladorLibros::ctrMostrarLibros($valor);
                         <ul class="list">
                             <?php foreach ($categorias as $key => $value): ?>
                                 <li class="items">
-                                    <a class="categoriaslibros" href="<?php echo $ruta.$value["nombreCategoria"]; ?>"><?php echo $value["nombreCategoria"]?></a>
+                                    <a class="categoriaslibros" href="<?php echo $ruta.$value["rutaCategoria"]; ?>"><?php echo $value["nombreCategoria"]?></a>
                                 </li>
                             <?php endforeach ?>
                         </ul>

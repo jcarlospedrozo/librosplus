@@ -59,6 +59,7 @@ if(isset($_SESSION["idBackend"])){
         ?>
     </div>
     <script src="views/js/administradores.js"></script>
+    <script src="views/js/categorias.js"></script>
 </body>
 <?php endif ?>
 </html>

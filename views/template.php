@@ -43,7 +43,7 @@ if(isset($_GET["pagina"])){
 	$validarRuta = "";
 
 	foreach ($rutasCategorias as $key => $value) {
-		if($_GET["pagina"] == $value["nombreCategoria"]){
+		if($_GET["pagina"] == $value["rutaCategoria"]){
 			$validarRuta = "todos";
 		}
 	}
