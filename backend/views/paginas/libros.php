@@ -99,7 +99,7 @@
 
             <div class="card-header">
 
-              <h5 class="card-title"><?php echo $libro["nombreCategoria"] ?> / <?php echo $libro["nombreLibro"] ?></h5>
+              <!-- <h5 class="card-title"><?php echo $libro["nombreCategoria"] ?> / <?php echo $libro["nombreLibro"] ?></h5> -->
 
               <div class="preload"></div>
 
@@ -133,7 +133,7 @@
 
             <div class="card-body">
 
-              <input type="hidden" class="idHabitacion" value="<?php echo $habitacion["id_h"] ?>">
+              <input type="hidden" class="idLibro" value="<?php echo $libro["idLibro"] ?>">
 
               <!-- Categoría y nombre de la habitación -->
 
@@ -141,7 +141,7 @@
 
                 <div class="form-inline mx-3 px-3 border border-left-0 border-top-0 border-bottom-0">
 
-                  <p class="mr-sm-2">Elije la Categoría:</p>
+                  <p class="mr-sm-2">Elige la Categoría:</p>
 
                   <?php
 
@@ -180,10 +180,50 @@
 
                   if ($libro != null) {
 
-                    echo '<input type="text" class="form-control seleccionarEstilo" value="' . $libro["nombreLibro"] . '" readonly>';
+                    echo '<input type="text" class="form-control seleccionarNombre" value="' . $libro["nombreLibro"] . '" readonly>';
                   } else {
 
-                    echo '<input type="text" class="form-control seleccionarEstilo">';
+                    echo '<input type="text" class="form-control seleccionarNombre">';
+                  }
+
+                  ?>
+
+                </div>
+
+              </div>
+
+              <div class="d-flex flex-column flex-md-row justify-content-start mb-3">
+
+                <div class="form-inline mx-3 px-3 border border-left-0 border-top-0 border-bottom-0">
+
+                  <p class="mr-sm-2">Elige el precio:</p>
+
+                  <?php
+
+                  if ($libro != null) {
+
+                    echo '<input type="text" class="form-control seleccionarPrecio" value="' . $libro["precioLibro"] . '" readonly>';
+                  } else {
+
+                    echo '<input type="text" class="form-control seleccionarPrecio">';
+                  }
+
+                  ?>
+
+                </div>
+
+                <div class="form-inline">
+
+                  <p class="mr-sm-2">Escribe el autor del libro:</p>
+
+                  <?php
+
+                  if ($libro != null) {
+
+                    echo '<input type="text" class="form-control seleccionarAutor" value="' . $libro["nombreLibro"] . '" readonly>';
+                  } else {
+
+                    echo '<input type="text" class="form-control seleccionarAutor">';
                   }
 
                   ?>
@@ -287,7 +327,7 @@
 
               <div class="card-tools float-right">
 
-                <button type="button" class="btn btn-info btn-sm guardarHabitacion">
+                <button type="button" class="btn btn-info btn-sm guardarLibro">
 
                   <i class="fas fa-save"></i>
 

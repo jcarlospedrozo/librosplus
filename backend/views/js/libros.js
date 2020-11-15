@@ -206,3 +206,127 @@ $(document).on("click", ".quitarFotoNueva", function () {
 		}
 	}
 })
+
+//Guardar libro
+$(".guardarLibro").click(function () {
+
+	var idLibro = $(".idLibro").val();
+
+	var nombreCategoria = $(".seleccionarTipo").val().split(",")[1];
+	var idCategoria = $(".seleccionarTipo").val().split(",")[0];
+
+	var nombreLibro = $(".seleccionarNombre").val();
+	var precioLibro = $(".seleccionarPrecio").val();
+	var autorLibro = $(".seleccionarAutor").val();
+
+	var galeria = $(".inputNuevaGaleria").val();
+	var galeriaAntigua = $(".inputAntiguaGaleria").val();
+
+	var descripcion = $(".ck-content").html();
+
+	if (nombreCategoria == "" || idCategoria == "") {
+
+		Swal.fire({
+			title: "Error al guardar",
+			text: "El campo 'Elija Categoría' no puede ir vacío",
+			icon: "error",
+			confirmButtonText: "¡Cerrar!"
+		});
+
+		return;
+
+	} else if (nombreLibro == "") {
+
+		Swal.fire({
+			title: "Error al guardar",
+			text: "El campo 'Nombre libro' no puede ir vacío",
+			icon: "error",
+			confirmButtonText: "¡Cerrar!"
+		});
+
+		return;
+
+	} else if (descripcion == "") {
+
+		Swal.fire({
+			title: "Error al guardar",
+			text: "El campo de 'Descripción' no puede ir vacío",
+			icon: "error",
+			confirmButtonText: "¡Cerrar!"
+		});
+
+		return;
+
+	} else {
+
+		var datos = new FormData();
+		datos.append("idLibro", idLibro);
+		datos.append("nombreLibro", nombreLibro);
+		datos.append("galeria", galeria);
+		datos.append("galeriaAntigua", galeriaAntigua);
+		datos.append("precioLibro", precioLibro);
+		datos.append("idCategoria", idCategoria);
+		datos.append("nombreCategoria", nombreCategoria);
+		datos.append("descripcion", descripcion);
+		datos.append("autorLibro", autorLibro);
+
+		$.ajax({
+
+			url: "ajax/libros.ajax.php",
+			method: "POST",
+			data: datos,
+			cache: false,
+			contentType: false,
+			processData: false,
+			xhr: function () {
+
+				var xhr = $.ajaxSettings.xhr();
+
+				xhr.onprogress = function (evt) {
+
+					var porcentaje = Math.floor((evt.loaded / evt.total * 100));
+
+					$(".preload").before(`
+
+		    			<div class="progress mt-3" style="height:2px">
+		    			<div class="progress-bar" style="width: `+ porcentaje + `%;"></div>
+		    			</div>`
+					)
+
+				};
+
+				return xhr;
+
+			},
+			success: function (respuesta) {
+
+				if (respuesta == "ok") {
+
+					swal({
+						type: "success",
+						title: "¡CORRECTO!",
+						text: "¡La habitación ha sido guardada exitosamente!",
+						showConfirmButton: true,
+						confirmButtonText: "Cerrar"
+
+					}).then(function (result) {
+
+						if (result.value) {
+
+							window.location = "libros";
+
+						}
+
+					});
+
+				}
+
+			}
+
+		})
+
+
+	}
+
+
+})
