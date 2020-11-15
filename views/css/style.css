@@ -95,20 +95,16 @@ ul li a:hover{
     height: 100vh;
 }
 
-.login{
-    margin-top: -28px;
-}
-
 .fila-ingresar{
-    margin-bottom: 48px;
+    margin-bottom: 62px;
 }
 
 .fila-registro{
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .register{
-    padding-top: 15px;
+    padding-top: 25px;
 }
 
 .ingresar{

@@ -60,7 +60,7 @@ if($cliente->getAccessToken()){
                         <i class='bx bxl-facebook' style='color:#ffffff'  ></i>
                             Ingreso con Facebook
                         </p>
-                    </div>
+                    <!-- </div>
                     <div class="form-group">
                         <a href="<?php echo $rutaGoogle; ?>">
                             <p class="p-2 bg-danger text-center text-white" style="cursor:pointer; border-radius: 5px">
@@ -68,7 +68,7 @@ if($cliente->getAccessToken()){
                                 Ingreso con Google
                             </p>
                         </a>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <label for="exampleInputEmail1">Correo Electrónico</label>
                         <input type="email" class="form-control" name="ingresoEmail" id="exampleInputEmail1" aria-describedby="emailHelp" required>
