@@ -14,4 +14,12 @@ Class ControladorLibros{
 		$respuesta = ModeloLibros::mdlMostrarLibro($tabla, $valor);
 		return $respuesta;
 	}
+
+	static public function ctrMostrarLibrosNuevos(){
+		$tabla1 = "categorias";
+		$tabla2 = "libros";
+		$tabla3 = "autores";
+		$respuesta = ModeloLibros::mdlMostrarLibrosNuevos($tabla1, $tabla2, $tabla3);
+		return $respuesta;
+	}
 }

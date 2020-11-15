@@ -1,25 +1,17 @@
+<?php
+$libros = ControladorLibros::ctrMostrarLibrosNuevos();
+//echo'<pre>'; print_r($categorias); echo'</pre>';
+?>
 <div class="small-container">
     <h2 class="title">Libros Nuevos</h2>
     <div class="row">
-        <div class="col-3 libros">
-            <img src="views/img/product-5.jpg" alt="">
-            <h3>Cien Años de Soledad</h3>
-            <p>Gabriel Garcia Márquez</p>
+        <?php foreach ($libros as $key => $value): ?>
+            <div class="col-3 libros">
+            <img src="<?php echo $servidor.$value["fotoLibro"] ?>" alt="">
+            <h3><?php echo $value['nombreLibro']?></h3>
+            <p><?php echo $value['nombreAutor']?></p>
+            <input type="submit" class="btn btn-primary boton" value="Ver detalles">
         </div>
-        <div class="col-3 libros">
-            <img src="views/img/product-5.jpg" alt="">
-            <h3>Cien Años de Soledad</h3>
-            <p>Gabriel Garcia Márquez</p>
-        </div>
-        <div class="col-3 libros">
-            <img src="views/img/product-5.jpg" alt="">
-            <h3>Cien Años de Soledad</h3>
-            <p>Gabriel Garcia Márquez</p>
-        </div>
-        <div class="col-3 libros">
-            <img src="views/img/product-5.jpg" alt="">
-            <h3>Cien Años de Soledad</h3>
-            <p>Gabriel Garcia Márquez</p>
-        </div>
+        <?php endforeach?>
     </div>
 </div>

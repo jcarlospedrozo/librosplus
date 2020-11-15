@@ -146,6 +146,12 @@ ul li a:hover{
     background: #f0f1f3;
 }
 
+.libros img{
+    width: 100%;
+    margin-bottom: 1rem;
+    background: #f0f1f3;
+}
+
 .foto-libro{
     background: #f0f1f3;
 }
