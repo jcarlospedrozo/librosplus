@@ -32,6 +32,7 @@ if(isset($_SESSION["idBackend"])){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.22/r-2.2.6/datatables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
     <script src="views/js/plugins/adminlte.min.js"></script>
 </head>
 
@@ -60,6 +61,7 @@ if(isset($_SESSION["idBackend"])){
     </div>
     <script src="views/js/administradores.js"></script>
     <script src="views/js/categorias.js"></script>
+    <script src="views/js/libros.js"></script>
 </body>
 <?php endif ?>
 </html>
