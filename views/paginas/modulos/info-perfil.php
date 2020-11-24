@@ -11,9 +11,9 @@ $vencidas = 0;
 foreach ($reservas as $key => $value) {
 	
 	if($hoy >= $value["fechaDespacho"]){
-		$vencidas++;		
+		++$vencidas;		
 	}else{
-		$noVencidas++;
+		++$noVencidas;
 	}
 }
 
@@ -93,8 +93,8 @@ foreach ($reservas as $key => $value) {
 
 								<ul class="card-body p-0">
 
-									<li class="px-2" style="background:#FFFDF4"> <?php echo $noVencidas; ?> Por vencerse</li>
 									<li class="px-2 text-white" style="background:#CEC5B6"> <?php echo $vencidas; ?> Vencidas</li>
+									<li class="px-2" style="background:#FFFDF4"> <?php echo $noVencidas; ?> Por vencerse</li>
 
 								</ul>
 
@@ -443,6 +443,7 @@ foreach ($reservas as $key => $value) {
 							<thead class="thead-light">
 								<tr>
 									<th>#</th>
+									<th>Codigo</th>
 									<th>Libro</th>
 									<th>Desde</th>
 									<th>Hasta</th>
@@ -455,17 +456,24 @@ foreach ($reservas as $key => $value) {
 									echo '<div class="d-lg-none d-flex py-2">Aún no tiene reservas</div>';
 									return;
 								}
-
-								foreach ($reservas as $key => $value) {
-									$libro = ControladorLibros::ctrMostrarLibro($value["idLibro"]);
-									echo '
-									<tr>
-										<th scope="row">'.($key + 1).'</th>
-										<td>'.$libro["nombreLibro"].'</td>
-										<td>'.$value["fechaDespacho"].'</td>
-										<td>'.$value["fechaDevolucion"].'</td>
-									</tr>';
+								else {
+									foreach ($reservas as $key => $value) {
+										$libro = ControladorLibros::ctrMostrarLibro($value["idLibro"]);
+										echo '
+										<tr>
+											<th scope="row">'.($key + 1).'</th>
+											<td>'.$value["codigoReserva"].'</td>
+											<td>'.$libro["nombreLibro"].'</td>
+											<td>'.$value["fechaDespacho"].'</td>
+											<td>'.$value["fechaDevolucion"].'</td>
+										</tr>';
+	
+									}
+									echo '<p class="help-block small">
+										Si desea modificar o cancelar una reserva, por favor escribir al Whatsapp <a href="https://api.whatsapp.com/send?phone=573175826912" target="_blank">+57 317 582 6912</a>	
+										</p>';
 								}
+
 								?>
 							</tbody>
 						</table>

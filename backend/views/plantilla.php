@@ -22,8 +22,34 @@ if(isset($_SESSION["idBackend"])){
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="views/js/plugins/datepicker/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="views/css/plugins/fullcalendar.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.22/r-2.2.6/datatables.min.css"/>
     <link rel="stylesheet" href="views/css/plugins/adminlte.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+
+    <style>
+        .fc-unthemed .fc-today{
+            background: rgba(255, 255, 255, 0) !important;
+        }
+
+        .fc-unthemed th {
+            color: #020202;
+            background-color: #ffffff;
+        }
+
+        .fc-button{
+            background: #101010;
+        }
+
+        .fc-icon{
+            color: #ffffff;
+        }
+
+        .fc-prev-button:hover, .fc-next-button:hover{
+            background-color: #020202;
+        }
+    </style>
  
     
     <!-- js -->
@@ -33,6 +59,13 @@ if(isset($_SESSION["idBackend"])){
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.22/r-2.2.6/datatables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+	<script src="views/js/plugins/moment.min.js"></script>
+	<script src="views/js/plugins/fullcalendar/fullcalendar.js"></script>
+	<script src="views/js/plugins/fullcalendar/locale/es.js"></script>
+	<script src="views/js/plugins/datepicker/js/bootstrap-datepicker.min.js"></script>
+	<script src="views/js/plugins/datepicker/locales/bootstrap-datepicker.es.min.js"></script>
     <script src="views/js/plugins/adminlte.min.js"></script>
 </head>
 
@@ -48,7 +81,7 @@ if(isset($_SESSION["idBackend"])){
         include "paginas/modulos/menu.php";
         // Navegacion de paginas
         if (isset($_GET["pagina"])) {
-            if ($_GET["pagina"] == "inicio" || $_GET["pagina"] == "administradores" || $_GET["pagina"] == "categorias" || $_GET["pagina"] == "libros" || $_GET["pagina"] == "reservas" || $_GET["pagina"] == "usuarios" || $_GET["pagina"] == "salir") {
+            if ($_GET["pagina"] == "inicio" || $_GET["pagina"] == "administradores" || $_GET["pagina"] == "categorias" || $_GET["pagina"] == "libros" || $_GET["pagina"] == "autores" || $_GET["pagina"] == "reservas" || $_GET["pagina"] == "usuarios" || $_GET["pagina"] == "salir") {
                 include "paginas/".$_GET["pagina"].".php";
             } else {
                 include "paginas/error404.php";
@@ -62,6 +95,9 @@ if(isset($_SESSION["idBackend"])){
     <script src="views/js/administradores.js"></script>
     <script src="views/js/categorias.js"></script>
     <script src="views/js/libros.js"></script>
+    <script src="views/js/autores.js"></script>
+    <script src="views/js/reservas.js"></script>
+    <script src="views/js/usuarios.js"></script>
 </body>
 <?php endif ?>
 </html>

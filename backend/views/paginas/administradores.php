@@ -1,7 +1,7 @@
 <?php
 if ($admin["perfil"] != "Administrador") {
   echo '<script>
-      window.location = "inicio";
+      window.location = "categorias";
     </script>';
     return;
 }

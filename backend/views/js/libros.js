@@ -74,7 +74,7 @@ $(".subirImagen").on("dragover", function (e) {
 })
 
 
-$("#galeria").change(function () {
+$("#fotoLibro").change(function () {
 
 	var archivos = this.files;
 
@@ -154,11 +154,11 @@ function multiplesArchivos(archivos) {
 
 
 				if (archivosTemporales.length != 0) {
-					archivosTemporales = JSON.parse($(".inputNuevaGaleria").val());
+					archivosTemporales = JSON.parse($(".inputNuevaFoto").val());
 				}
 
 				archivosTemporales.push(rutaImagen);
-				$(".inputNuevaGaleria").val(JSON.stringify(archivosTemporales))
+				$(".inputNuevaFoto").val(JSON.stringify(archivosTemporales))
 			})
 		}
 	}
@@ -169,7 +169,7 @@ $(document).on("click", ".quitarFotoNueva", function () {
 
 	var listaFotosNuevas = $(".quitarFotoNueva");
 
-	var listaTemporales = JSON.parse($(".inputNuevaGaleria").val());
+	var listaTemporales = JSON.parse($(".inputNuevaFoto").val());
 
 	for (var i = 0; i < listaFotosNuevas.length; i++) {
 
@@ -181,7 +181,7 @@ $(document).on("click", ".quitarFotoNueva", function () {
 
 			listaTemporales.splice(i, 1);
 
-			$(".inputNuevaGaleria").val(JSON.stringify(listaTemporales));
+			$(".inputNuevaFoto").val(JSON.stringify(listaTemporales));
 
 			$(this).parent().parent().remove();
 
@@ -193,7 +193,7 @@ $(document).on("click", ".quitarFotoNueva", function () {
 
 $(document).on("click", ".quitarFotoNueva", function () {
 	var listaFotosNuevas = $(".quitarFotoNueva");
-	var listaTemporales = JSON.parse($(".inputNuevaGaleria").val());
+	var listaTemporales = JSON.parse($(".inputNuevaFoto").val());
 
 	for (var i = 0; i < listaFotosNuevas.length; i++) {
 		$(listaFotosNuevas[i]).attr("temporal", listaTemporales[i]);
@@ -201,9 +201,24 @@ $(document).on("click", ".quitarFotoNueva", function () {
 
 		if (quitarImagen == listaTemporales[i]) {
 			listaTemporales.splice(i, 1);
-			$(".inputNuevaGaleria").val(JSON.stringify(listaTemporales));
+			$(".inputNuevaFoto").val(JSON.stringify(listaTemporales));
 			$(this).parent().parent().remove();
 		}
+	}
+})
+
+$(document).on("click", ".quitarFotoAntigua", function(){
+	var listaFotosAntiguas = $(".quitarFotoAntigua"); 
+	var listaTemporales = $(".inputAntiguaFoto").val();
+
+	for(var i = 0; i < listaFotosAntiguas.length; i++){
+		quitarImagen = $(this).attr("temporal");
+		if(quitarImagen == listaTemporales[i]){
+			listaTemporales.splice(i, 1);
+			$(".inputAntiguaFoto").val(listaTemporales.toString());
+			$(this).parent().parent().remove();
+		}
+
 	}
 })
 
@@ -215,14 +230,16 @@ $(".guardarLibro").click(function () {
 	var nombreCategoria = $(".seleccionarTipo").val().split(",")[1];
 	var idCategoria = $(".seleccionarTipo").val().split(",")[0];
 
+	// var nombreAutor = $(".seleccionarAutor").val().split(",")[1];
+	var idAutor = $(".seleccionarAutor").val().split(",")[0];
+
 	var nombreLibro = $(".seleccionarNombre").val();
 	var precioLibro = $(".seleccionarPrecio").val();
-	var autorLibro = $(".seleccionarAutor").val();
 
-	var galeria = $(".inputNuevaGaleria").val();
-	var galeriaAntigua = $(".inputAntiguaGaleria").val();
+	var fotoLibro = $(".inputNuevaFoto").val();
+	var fotoLibroAntigua = $(".inputAntiguaFoto").val();
 
-	var descripcion = $(".ck-content").html();
+	var descripcionLibro = $(".ck-content").html();
 
 	if (nombreCategoria == "" || idCategoria == "") {
 
@@ -235,7 +252,20 @@ $(".guardarLibro").click(function () {
 
 		return;
 
-	} else if (nombreLibro == "") {
+	}
+
+	else if (idAutor == "") {
+		Swal.fire({
+			title: "Error al guardar",
+			text: "El campo 'Elija Autor' no puede ir vacío",
+			icon: "error",
+			confirmButtonText: "¡Cerrar!"
+		});
+
+		return;
+	}
+
+	else if (nombreLibro == "") {
 
 		Swal.fire({
 			title: "Error al guardar",
@@ -245,8 +275,22 @@ $(".guardarLibro").click(function () {
 		});
 
 		return;
+	}
 
-	} else if (descripcion == "") {
+	else if (precioLibro == "") {
+
+		Swal.fire({
+			title: "Error al guardar",
+			text: "El campo 'Precio libro' no puede ir vacío",
+			icon: "error",
+			confirmButtonText: "¡Cerrar!"
+		});
+
+		return;
+
+	}
+	
+	else if (descripcionLibro == "") {
 
 		Swal.fire({
 			title: "Error al guardar",
@@ -262,13 +306,14 @@ $(".guardarLibro").click(function () {
 		var datos = new FormData();
 		datos.append("idLibro", idLibro);
 		datos.append("nombreLibro", nombreLibro);
-		datos.append("galeria", galeria);
-		datos.append("galeriaAntigua", galeriaAntigua);
+		datos.append("descripcionLibro", descripcionLibro);
+		datos.append("fotoLibro", fotoLibro);
+		datos.append("fotoLibroAntigua", fotoLibroAntigua);
 		datos.append("precioLibro", precioLibro);
 		datos.append("idCategoria", idCategoria);
 		datos.append("nombreCategoria", nombreCategoria);
-		datos.append("descripcion", descripcion);
-		datos.append("autorLibro", autorLibro);
+		datos.append("idAutor", idAutor);
+		// datos.append("nombreAutor", nombreAutor);
 
 		$.ajax({
 
@@ -302,31 +347,81 @@ $(".guardarLibro").click(function () {
 
 				if (respuesta == "ok") {
 
-					swal({
-						type: "success",
-						title: "¡CORRECTO!",
-						text: "¡La habitación ha sido guardada exitosamente!",
+					Swal.fire({
+						icon: "success",
+						title: "¡Correcto!",
+						text: "¡El libro ha sido guardado exitosamente!",
 						showConfirmButton: true,
 						confirmButtonText: "Cerrar"
-
-					}).then(function (result) {
-
+					}).then((result) =>  {
 						if (result.value) {
-
 							window.location = "libros";
-
 						}
-
 					});
-
 				}
-
 			}
-
 		})
-
-
 	}
-
-
 })
+
+//Eliminar Habitacion
+
+$(document).on("click", ".eliminarLibro", function(){
+
+	var idEliminar = $(this).attr("idEliminar");
+  
+	var fotoLibro = $(this).attr("fotoLibro");
+  
+	Swal.fire({
+	  title: '¿Está seguro de eliminar este libro?',
+	  text: "¡Si no lo está puede cancelar la acción!",
+	  icon: 'warning',
+	  showCancelButton: true,
+	  confirmButtonColor: '#3085d6',
+	  cancelButtonColor: '#d33',
+	  cancelButtonText: 'Cancelar',
+	  confirmButtonText: 'Si, eliminar libro!'
+	}).then((result) => {
+  
+	  if(result.value){
+  
+		  var datos = new FormData();
+		  datos.append("idEliminar", idEliminar);
+		  datos.append("fotoLibro", fotoLibro);
+  
+		  $.ajax({
+  
+			url:"ajax/libros.ajax.php",
+			method: "POST",
+			data: datos,
+			cache: false,
+			contentType: false,
+			processData: false,
+			success:function(respuesta){
+  
+			   if(respuesta == "ok"){
+				 Swal.fire({
+					icon: "success",
+					title: "¡Correcto!",
+					text: "El libro ha sido borrado correctamente",
+					showConfirmButton: true,
+					confirmButtonText: "Cerrar"
+				   }).then((result) => {
+  
+					  if(result.value){
+  
+						window.location = "libros";
+  
+					  }
+				  })
+  
+			   }
+  
+			}
+  
+		  })
+	  }
+	
+	})
+  
+  })

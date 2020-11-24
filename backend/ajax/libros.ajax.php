@@ -1,30 +1,30 @@
 <?php
 
-require_once "../controladores/libros.controlador.php";
-require_once "../modelos/libros.modelo.php";
+require_once "../controllers/libros.controller.php";
+require_once "../models/libros.model.php";
 
 class AjaxLibros{
 
+    public $nombreLibro;
+    public $descripcionLibro;
+    public $fotoLibro;
+    public $precioLibro;
 	public $idCategoria;
 	public $nombreCategoria;
-    public $nombreLibro;
-    public $precioLibro;
-    public $autorLibro;
-    public $galeria;
-    public $descripcionLibro;
+    public $idAutor;
     public $idLibro;
-    public $galeriaAntigua;
+    public $fotoLibroAntigua;
 
 	//Nuevo libro
 	public function ajaxNuevolibro(){
 	
 		$datos = array( "nombreLibro" => $this->nombreLibro,
                         "descripcionLibro" => $this->descripcionLibro,
-                        "galeria" => $this->galeria,
+                        "fotoLibro" => $this->fotoLibro,
                         "precioLibro" => $this->precioLibro,
                         "idCategoria" => $this->idCategoria,
                         "nombreCategoria" => $this->nombreCategoria,
-                        "autorLibro" => $this->autorLibro);
+						"idAutor" => $this->idAutor);
 
 		$respuesta = ControladorLibros::ctrNuevoLibro($datos);
 
@@ -32,41 +32,35 @@ class AjaxLibros{
 
 	}
 
-	/*=============================================
-	Editar habitación
-	=============================================*/	
-
+	//Editar libro
 	public function ajaxEditarLibro(){
 	
 		$datos = array( "idLibro" => $this->idLibro,
                         "nombreLibro" => $this->nombreLibro,
                         "descripcionLibro" => $this->descripcionLibro,
-						"galeria" => $this->galeria,
-						"galeriaAntigua" => $this->galeriaAntigua,
+						"fotoLibro" => $this->fotoLibro,
+						"fotoLibroAntigua" => $this->fotoLibroAntigua,
                         "idCategoria" => $this->idCategoria,
-                        "nombreCategoria" => $this->nombreCategoria,
+						"nombreCategoria" => $this->nombreCategoria,
+						"idAutor" => $this->idAutor);
 
-		$respuesta = ControladorHabitaciones::ctrEditarHabitacion($datos);
+		$respuesta = ControladorLibros::ctrEditarLibro($datos);
 
 		echo $respuesta;
 
 	}
 
-	/*=============================================
-	Eliminar habitación
-	=============================================*/	
+	//Eliminar habitación
 
 	public $idEliminar;
-	public $galeriaHabitacion;
-	public $recorridoHabitacion;
+	public $fotoLibro1;
 
-	public function ajaxEliminarHabitacion(){
+	public function ajaxEliminarLibro(){
 	
 		$datos = array( "idEliminar" => $this->idEliminar,
-						"galeriaHabitacion" => $this->galeriaHabitacion,
-						"recorridoHabitacion" => $this->recorridoHabitacion);
+						"fotoLibro" => $this->fotoLibro1);
 
-		$respuesta = ControladorHabitaciones::ctrEliminarHabitacion($datos);
+		$respuesta = ControladorLibros::ctrEliminarLibro($datos);
 
 		echo $respuesta;
 
@@ -76,15 +70,17 @@ class AjaxLibros{
 
 //Guardar libro
 
-if(isset($_POST["tipo"])){
+if(isset($_POST["nombreCategoria"])){
 
 	$libro = new AjaxLibros();
+    $libro -> nombreLibro = $_POST["nombreLibro"];
+	$libro -> descripcionLibro = $_POST["descripcionLibro"];
+    $libro -> fotoLibro = $_POST["fotoLibro"];
+    $libro -> fotoLibroAntigua = $_POST["fotoLibroAntigua"];
+    $libro -> precioLibro = $_POST["precioLibro"];
 	$libro -> idCategoria = $_POST["idCategoria"];
 	$libro -> nombreCategoria = $_POST["nombreCategoria"];
-    $libro -> nombreLibro = $_POST["nombreLibro"];
-    $libro -> galeria = $_POST["galeria"];
-    $libro -> galeriaAntigua = $_POST["galeriaAntigua"];
-    $libro -> descripcion = $_POST["descripcion"];
+	$libro -> idAutor = $_POST["idAutor"];
 
     if($_POST["idLibro"] != ""){
 
@@ -99,16 +95,14 @@ if(isset($_POST["tipo"])){
   
 }
 
-/*=============================================
-Eliminar habitación
-=============================================*/	
+
+//Eliminar habitación
 
 if(isset($_POST["idEliminar"])){
 
 	$eliminar = new AjaxLibros();
     $eliminar -> idEliminar = $_POST["idEliminar"];
-    $eliminar -> galeriaHabitacion = $_POST["galeriaHabitacion"];
-    $eliminar -> recorridoHabitacion = $_POST["recorridoHabitacion"];
-    $eliminar -> ajaxEliminarHabitacion();
+    $eliminar -> fotoLibro = $_POST["fotoLibro"];
+    $eliminar -> ajaxEliminarLibro();
 	
 }

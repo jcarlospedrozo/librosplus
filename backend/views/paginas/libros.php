@@ -115,9 +115,9 @@
 
                 if ($libro != null) {
 
-                  $galeria = $libro["fotoLibro"];
+                  $fotoLibro = $libro["fotoLibro"];
 
-                  echo '<button type="button" class="btn btn-danger btn-sm eliminarLibro" idEliminar="' . $libro["idLibro"] . '" galeriaHabitacion="' .  $galeria . '">
+                  echo '<button type="button" class="btn btn-danger btn-sm eliminarLibro" idEliminar="'.$libro["idLibro"].'" fotoLibro="'. $fotoLibro.'">
                   
                           <i class="fas fa-trash"></i> 
 
@@ -214,16 +214,31 @@
 
                 <div class="form-inline">
 
-                  <p class="mr-sm-2">Escribe el autor del libro:</p>
+                  <p class="mr-sm-2">Selecciona el autor del libro:</p>
 
                   <?php
 
                   if ($libro != null) {
 
-                    echo '<input type="text" class="form-control seleccionarAutor" value="' . $libro["nombreLibro"] . '" readonly>';
+                    echo '<select class="form-control seleccionarAutor" readonly>
+                        
+                        <option value="' . $libro["idAutor"] . ',' . $libro["nombreAutor"] . '">' . $libro["nombreAutor"] . '</option>
+
+                       </select>';
                   } else {
 
-                    echo '<input type="text" class="form-control seleccionarAutor">';
+                    echo '<select class="form-control seleccionarAutor">
+
+                         <option value="">Seleccione</option>';
+
+                    $autores = ControladorAutores::ctrMostrarAutores(null, null);
+
+                    foreach ($autores as $key => $value) {
+
+                      echo '<option value="' . $value["idAutor"] . ',' . $value["nombreAutor"] . '">' . $value["nombreAutor"] . '</option>';
+                    }
+
+                    echo '</select>';
                   }
 
                   ?>
@@ -249,15 +264,15 @@
 
                     if ($libro != null) {
 
-                      $galeria = $libro["fotoLibro"];
+                      $fotoLibro = $libro["fotoLibro"];
 
                         echo '<li class="col-12 col-md-6 col-lg-3 card px-3 rounded-0 shadow-none">
                       
-                                <img class="card-img-top" src="' . $galeria . '">
+                                <img class="card-img-top" src="' . $fotoLibro . '">
 
                                 <div class="card-img-overlay p-0 pr-3">
                                   
-                                   <button class="btn btn-danger btn-sm float-right shadow-sm quitarFotoAntigua" temporal="' . $galeria . '">
+                                   <button class="btn btn-danger btn-sm float-right shadow-sm quitarFotoAntigua" temporal="' . $fotoLibro . '">
                                      
                                      <i class="fas fa-times"></i>
 
@@ -272,15 +287,15 @@
                   </ul>
                 </div>
 
-                <input type="hidden" class="inputNuevaGaleria">
+                <input type="hidden" class="inputNuevaFoto">
 
-                <input type="hidden" class="inputAntiguaGaleria" value="<?php echo implode(",", $galeria); ?>">
+                <input type="hidden" class="inputAntiguaFoto" value="<?php echo $fotoLibro; ?>">
 
                 <div class="card-footer">
 
-                  <input type="file" id="galeria" class="d-none">
+                  <input type="file" id="fotoLibro" class="d-none">
 
-                  <label for="galeria" class="text-dark text-center py-5 border rounded bg-white w-100 subirImagen">
+                  <label for="fotoLibro" class="text-dark text-center py-5 border rounded bg-white w-100 subirImagen">
                     Haz clic aquí o arrastra las imágenes <br>
                   </label>
 
@@ -337,9 +352,9 @@
 
                 if ($libro != null) {
 
-                  $galeria = $libro["fotoLibro"];
+                  $fotoLibro = $libro["fotoLibro"];
 
-                  echo '<button type="button" class="btn btn-danger btn-sm eliminarHabitacion" idEliminar="' . $libro["idLibro"] . '" galeriaHabitacion="' . $galeria . '">
+                  echo '<button type="button" class="btn btn-danger btn-sm eliminarLibro" idEliminar="' . $libro["idLibro"] . '" fotoLibro="' . $fotoLibro . '">
                   
                           <i class="fas fa-trash"></i> 
 
