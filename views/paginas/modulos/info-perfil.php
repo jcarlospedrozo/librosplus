@@ -11,9 +11,9 @@ $vencidas = 0;
 foreach ($reservas as $key => $value) {
 	
 	if($hoy >= $value["fechaDespacho"]){
-		$vencidas++;		
+		++$vencidas;		
 	}else{
-		$noVencidas++;
+		++$noVencidas;
 	}
 }
 
@@ -63,7 +63,7 @@ foreach ($reservas as $key => $value) {
 
 						<img src="<?php echo $servidor; ?>views/img/usuarios/default/default.png" class="img-fluid rounded-circle" width="150px">
 
-						<?php else: ?>
+					<?php else: ?>
 
 						<?php if ($usuario["modoUsuario"] == "directo"): ?>
 
@@ -93,52 +93,10 @@ foreach ($reservas as $key => $value) {
 
 								<ul class="card-body p-0">
 
-									<li class="px-2" style="background:#FFFDF4"> <?php echo $noVencidas; ?> Por vencerse</li>
 									<li class="px-2 text-white" style="background:#CEC5B6"> <?php echo $vencidas; ?> Vencidas</li>
+									<li class="px-2" style="background:#FFFDF4"> <?php echo $noVencidas; ?> Por vencerse</li>
 
 								</ul>
-
-								<!--=====================================
-								TABLA RESERVAS MÓVIL
-								======================================-->	
-
-								<div class="d-lg-none d-flex py-2">
-									
-									<div class="p-2 flex-grow-1">
-
-										<h5>Suite Contemporánea</h5>
-										<h5 class="small text-gray-dark">Del 30.08.2018 al 03.09.2018</h5>
-
-									</div>
-
-									<div class="p-2">
-
-										<button type="button" class="btn btn-dark btn-sm text-white"><i class="fas fa-pencil-alt"></i></button>
-										<button type="button" class="btn btn-warning btn-sm text-white"><i class="fas fa-eye"></i></button>
-
-									</div>
-
-								</div>
-
-								<hr class="my-0">
-
-								<div class="d-lg-none d-flex py-2">
-									
-									<div class="p-2 flex-grow-1">
-
-										<h5>Suite Contemporánea</h5>
-										<h5 class="small text-gray-dark">Del 30.08.2018 al 03.09.2018</h5>
-
-									</div>
-
-									<div class="p-2">
-
-										<button type="button" class="btn btn-dark btn-sm text-white"><i class="fas fa-pencil-alt"></i></button>
-										<button type="button" class="btn btn-warning btn-sm text-white"><i class="fas fa-eye"></i></button>
-
-									</div>
-
-								</div>
 
 							</div>
 
@@ -163,6 +121,37 @@ foreach ($reservas as $key => $value) {
 										<li class="list-group-item small">
 											<button class="btn btn-dark" data-toggle="modal" data-target="#cambiarPassword">Cambiar Contraseña</button>
 										</li>
+										<!-- Modal cambiar password -->
+										<div class="modal fade" id="cambiarPassword" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+											<div class="modal-dialog modal-dialog-centered">
+												<div class="modal-content">
+													<form action="" method="post">
+														<div class="modal-header">
+															<h4 class="modal-title">Cambiar Contraseña</h4>
+															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+															</button>
+														</div>
+														<div class="modal-body">
+															<input type="hidden" name="idUsuarioPassword" value="<?php echo $usuario["idUsuario"]; ?>">
+
+															<div class="form-group">
+																<input type="password" class="form-control" name="editarPassword" placeholder="Cambiar Contraseña" required>
+															</div>
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+															<button type="submit" class="btn btn-primary">Enviar</button>
+														</div>
+														<?php
+															$cambiarPassword = new ControladorUsuarios();
+															$cambiarPassword -> ctrCambiarPassword();
+														?>
+													</form>
+												</div>
+											</div>
+										</div>
 										<?php endif ?>
 
 										
@@ -170,7 +159,7 @@ foreach ($reservas as $key => $value) {
 											<button class="btn btn-primary" data-toggle="modal" data-target="#cambiarFotoPerfil">Cambiar Imagen</button>
 										</li>
 
-										<!-- Modal cambiar perfil-->
+										<!-- Modal cambiar foto perfil-->
 										<div class="modal fade" id="cambiarFotoPerfil" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 											<div class="modal-dialog modal-dialog-centered">
 												<div class="modal-content">
@@ -204,39 +193,6 @@ foreach ($reservas as $key => $value) {
 												</div>
 											</div>
 										</div>
-
-										<!-- Modal cambiar password -->
-										<div class="modal fade" id="cambiarPassword" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-											<div class="modal-dialog modal-dialog-centered">
-												<div class="modal-content">
-													<form action="" method="post">
-														<div class="modal-header">
-															<h4 class="modal-title">Cambiar Contraseña</h4>
-															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-															<span aria-hidden="true">&times;</span>
-															</button>
-														</div>
-														<div class="modal-body">
-															<input type="hidden" name="idUsuarioPassword" value="<?php echo $usuario["idUsuario"]; ?>">
-
-															<div class="form-group">
-																<input type="password" class="form-control" name="editarPassword" placeholder="Cambiar Contraseña" required>
-															</div>
-														</div>
-														<div class="modal-footer">
-															<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-
-															<button type="submit" class="btn btn-primary">Enviar</button>
-														</div>
-														<?php
-															$cambiarPassword = new ControladorUsuarios();
-															$cambiarPassword -> ctrCambiarPassword();
-														?>
-													</form>
-												</div>
-											</div>
-										</div>
-
 
 									</ul>
 
@@ -336,7 +292,7 @@ foreach ($reservas as $key => $value) {
 
 							<?php if($validarPagoReserva): ?>
 
-								<div class="card">
+								<div class="card card-libro">
 									<div class="card-header">
 										Tienes una reserva pendiente por pagar
 									</div>
@@ -412,11 +368,13 @@ foreach ($reservas as $key => $value) {
 													document.cookie = "fechaIngreso=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path='.$ruta.';";
 													document.cookie = "fechaSalida=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path='.$ruta.';";
 
-													swal({
+													Swal.fire({
 														icon:"success",
 														title: "¡Correcto!",
-														text: "¡La reserva ha sido creada con éxito!"
-													}).then(function(result){
+														text: "¡La reserva ha sido creada con éxito!",
+														showConfirmButton: true,
+														confirmButtonText: "Cerrar"
+													}).then((result) => {
 														if(result.value){   
 															history.back();
 														} 
@@ -443,6 +401,7 @@ foreach ($reservas as $key => $value) {
 							<thead class="thead-light">
 								<tr>
 									<th>#</th>
+									<th>Codigo</th>
 									<th>Libro</th>
 									<th>Desde</th>
 									<th>Hasta</th>
@@ -455,17 +414,24 @@ foreach ($reservas as $key => $value) {
 									echo '<div class="d-lg-none d-flex py-2">Aún no tiene reservas</div>';
 									return;
 								}
-
-								foreach ($reservas as $key => $value) {
-									$libro = ControladorLibros::ctrMostrarLibro($value["idLibro"]);
-									echo '
-									<tr>
-										<th scope="row">'.($key + 1).'</th>
-										<td>'.$libro["nombreLibro"].'</td>
-										<td>'.$value["fechaDespacho"].'</td>
-										<td>'.$value["fechaDevolucion"].'</td>
-									</tr>';
+								else {
+									foreach ($reservas as $key => $value) {
+										$libro = ControladorLibros::ctrMostrarLibro($value["idLibro"]);
+										echo '
+										<tr>
+											<th scope="row">'.($key + 1).'</th>
+											<td>'.$value["codigoReserva"].'</td>
+											<td>'.$libro["nombreLibro"].'</td>
+											<td>'.$value["fechaDespacho"].'</td>
+											<td>'.$value["fechaDevolucion"].'</td>
+										</tr>';
+	
+									}
+									echo '<p class="help-block small">
+										Si desea modificar o cancelar una reserva, por favor escribir al Whatsapp <a href="https://api.whatsapp.com/send?phone=573175826912" target="_blank">+57 317 582 6912</a>	
+										</p>';
 								}
+
 								?>
 							</tbody>
 						</table>

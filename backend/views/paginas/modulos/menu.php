@@ -32,6 +32,7 @@
             </a>
           </li>
 
+          <?php if($admin["perfil"] == "Administrador"): ?>
           <li class="nav-item">
             <a href="inicio" class="nav-link">
               <i class="nav-icon fas fa-home"></i>
@@ -41,7 +42,6 @@
             </a>
           </li>
 
-          <?php if($admin["perfil"] == "Administrador"): ?>
           <li class="nav-item">
             <a href="administradores" class="nav-link">
               <i class="nav-icon fas fa-user-cog"></i>
@@ -66,6 +66,15 @@
               <i class="nav-icon fas fa-address-book"></i>
               <p>
                 Libros
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="autores" class="nav-link">
+              <i class="nav-icon fas fa-user-tie"></i>
+              <p>
+                Autores
               </p>
             </a>
           </li>

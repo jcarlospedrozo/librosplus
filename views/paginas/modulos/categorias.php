@@ -1,6 +1,6 @@
 <?php
-$categorias = ControladorCategorias::ctrMostrarCategorias();
-//echo'<pre>'; print_r($categorias); echo'</pre>';
+$categorias = ControladorCategorias::ctrMostrarCategoriasInicio();
+// echo'<pre>'; print_r($categorias); echo'</pre>';
 ?>
 
 <div class="categorias">

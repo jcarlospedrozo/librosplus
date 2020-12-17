@@ -16,8 +16,8 @@ $detallesLibro = ControladorDetalleLibro::ctrMostrarDetalleLibro($valor);
                 <input type="hidden" name="id-libro" value="<?php echo $value["idLibro"]; ?>">
                 <h1><?php echo $value["nombreLibro"] ?></h1>
                 <h3>Descripción</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic ab iste accusamus doloribus explicabo necessitatibus impedit, vel quaerat eum odit aut labore tenetur saepe. Assumenda, enim facilis. Maiores, saepe repudiandae?</p>
-                <h4>8000</h4>
+                <p><?php echo $value["descripcionLibro"] ?></p>
+                <h4><?php echo $value["precioLibro"] ?></h4>
 
                 <div class="row">
                     <div class="col-6">
@@ -39,7 +39,7 @@ $detallesLibro = ControladorDetalleLibro::ctrMostrarDetalleLibro($valor);
                     </div>
                 </div>
                 <input type="submit" class="btn btn-primary boton" value="Ver disponibilidad">
-                <input type="hidden" id="ruta" name="ruta" value="<?php echo $value["nombreCategoria"]; ?>">
+                <input type="hidden" id="ruta" name="ruta" value="<?php echo $value["rutaCategoria"]; ?>">
             </form>
         <?php endforeach ?>
         </div>

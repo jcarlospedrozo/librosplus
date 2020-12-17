@@ -96,6 +96,7 @@ ul li a:hover{
 }
 
 .fila-ingresar{
+<<<<<<< HEAD
     margin-bottom: 62px;
 }
 
@@ -105,6 +106,17 @@ ul li a:hover{
 
 .register{
     padding-top: 25px;
+=======
+    margin-bottom: 60px;
+}
+
+.fila-registro{
+    margin-bottom: 50px;
+}
+
+.register{
+    padding-top: -25px;
+>>>>>>> gestion-backend
 }
 
 .ingresar{
@@ -116,6 +128,7 @@ ul li a:hover{
     margin: 25px 0;
     font-weight: bold;
     color: #101010;
+    margin-top: 60px;
 }
 
 .form-group a, .reservas{
@@ -184,11 +197,6 @@ ul li a:hover{
 .libros{
     min-width: 200px;
     margin-bottom: 50px;
-    transition: 0.5s;
-}
-
-.libros:hover{
-    transform: translateY(-5px);
 }
 
 .col-3 img{
@@ -332,4 +340,8 @@ naranja hover  #d2321e*/
 
 .fc-icon{
     color: #ffffff;
+}
+
+.colDerPerfil {
+    margin-top: 50px;
 }

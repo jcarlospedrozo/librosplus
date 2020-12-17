@@ -60,8 +60,13 @@ if($cliente->getAccessToken()){
                         <i class='bx bxl-facebook' style='color:#ffffff'  ></i>
                             Ingreso con Facebook
                         </p>
+<<<<<<< HEAD
                     <!-- </div>
                     <div class="form-group">
+=======
+                    </div>
+                    <!-- <div class="form-group">
+>>>>>>> gestion-backend
                         <a href="<?php echo $rutaGoogle; ?>">
                             <p class="p-2 bg-danger text-center text-white" style="cursor:pointer; border-radius: 5px">
                             <i class='bx bxl-google' style='color:#ffffff' ></i>

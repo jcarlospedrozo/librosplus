@@ -29,8 +29,7 @@ $servidor = ControladorRuta::ctrServidor();
 	<script src="views/js/fullcalendar/locale/es.js"></script>
 	<script src="views/js/datepicker/js/bootstrap-datepicker.min.js"></script>
 	<script src="views/js/datepicker/locales/bootstrap-datepicker.es.min.js"></script>
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-</head>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script></head>
 <body>
 <?php
 include 'paginas/modulos/header.php';
@@ -62,11 +61,16 @@ if(isset($_GET["pagina"])){
 		$verificarUsuario = ControladorUsuarios::ctrActualizarUsuario($id, $item, $valor);
 		if($verificarUsuario == "ok"){
 			echo'<script>
-					swal({
+					Swal.fire({
 						icon:"success",
 						title: "¡Correcto!",
 						text: "¡Su cuenta ha sido verificada, ya puede ingresar al sistema!",
-						confirm: "Cerrar"
+						showConfirmButton: true,
+						confirmButtonText: "Cerrar"
+					}).then((result) => {
+						if(result.value){   
+							history.back();
+						} 
 					})
 				</script>';
 			return;

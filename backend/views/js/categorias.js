@@ -180,7 +180,7 @@ $(document).on("click", ".eliminarCategoria", function () {
                     if (respuesta == "ok") {
                         Swal.fire({
                             icon: "success",
-                            title: "¡CORRECTO!",
+                            title: "¡Correcto!",
                             text: "La categoria ha sido borrada correctamente",
                             showConfirmButton: true,
                             confirmButtonText: "Cerrar"
