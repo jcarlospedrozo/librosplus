@@ -21,14 +21,9 @@ Class ModeloLibros{
 		$stmt = null;
 	}
 
-<<<<<<< HEAD
 	static public function mdlMostrarLibrosNuevos($tabla1, $tabla2, $tabla3){
 		$stmt = Conexion::conectar()->prepare("SELECT $tabla1.*, $tabla2.*, $tabla3.* FROM $tabla1 INNER JOIN $tabla2 ON $tabla1.idCategoria = $tabla2.idCategoria INNER JOIN $tabla3 ON $tabla3.idAutor = $tabla2.idAutor LIMIT 4");
 		// $stmt->bindParam(":ruta", $valor, PDO::PARAM_STR);
-=======
-	static public function mdlMostrarLibrosNuevos($tabla1, $tabla2){
-		$stmt = Conexion::conectar()->prepare("SELECT $tabla1.*, $tabla2.* FROM $tabla1 INNER JOIN $tabla2 ON $tabla1.idAutor = $tabla2.idAutor ORDER BY idLibro DESC LIMIT 4");
->>>>>>> gestion-backend
 		$stmt -> execute();
 		return $stmt -> fetchAll();
 		$stmt -> close();
