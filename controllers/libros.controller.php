@@ -16,16 +16,10 @@ Class ControladorLibros{
 	}
 
 	static public function ctrMostrarLibrosNuevos(){
-<<<<<<< HEAD
 		$tabla1 = "categorias";
 		$tabla2 = "libros";
 		$tabla3 = "autores";
 		$respuesta = ModeloLibros::mdlMostrarLibrosNuevos($tabla1, $tabla2, $tabla3);
-=======
-		$tabla1 = "libros";
-		$tabla2 = "autores";
-		$respuesta = ModeloLibros::mdlMostrarLibrosNuevos($tabla1, $tabla2);
->>>>>>> gestion-backend
 		return $respuesta;
 	}
 }
