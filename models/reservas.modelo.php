@@ -2,8 +2,8 @@
 require_once "conexion.php";
 
 Class ModeloReservas{
-	static public function mdlMostrarReservas($tabla1, $tabla2, $tabla3, $valor){
-        $stmt = Conexion::conectar()->prepare("SELECT $tabla1.*, $tabla2.*, $tabla3.* FROM $tabla1 INNER JOIN $tabla2 ON $tabla1.idLibro = $tabla2.idLibro INNER JOIN $tabla3 ON $tabla1.idCategoria = $tabla3.idCategoria WHERE $tabla1.idLibro = :idLibro");
+	static public function mdlMostrarReservas($tabla1, $tabla2, $valor){
+        $stmt = Conexion::conectar()->prepare("SELECT $tabla1.*, $tabla2.* FROM $tabla1 INNER JOIN $tabla2 ON $tabla1.idLibro = $tabla2.idLibro WHERE $tabla1.idLibro = :idLibro");
         $stmt->bindParam(":idLibro", $valor, PDO::PARAM_STR);
 		$stmt -> execute();
 		return $stmt -> fetchAll();
@@ -52,6 +52,30 @@ Class ModeloReservas{
 		$stmt -> execute();
 		return $stmt -> fetchAll();
 		$stmt -> close();
+		$stmt = null;
+	}
+
+	static public function mdlMostrarNotificaciones($tabla, $valor){
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE reservas = :reservas");
+		$stmt -> bindParam(":reservas", $valor, PDO::PARAM_INT);
+		$stmt -> execute();
+		return $stmt -> fetch();
+		$stmt -> close();
+		$stmt = null;
+	}
+
+	static public function mdlActualizarNotificaciones($tabla, $reservas, $cantidad){
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET cantidad = :cantidad WHERE reservas = :reservas");
+		$stmt -> bindParam(":cantidad", $valor, PDO::PARAM_INT);
+		$stmt -> bindParam(":reservas", $valor, PDO::PARAM_INT);
+		if($stmt->execute()){
+			return "ok";
+		}else{
+			echo "\nPDO::errorInfo():\n";
+			print_r(Conexion::conectar()->errorInfo());
+		}
+
+		$stmt->close();
 		$stmt = null;
 	}
 }

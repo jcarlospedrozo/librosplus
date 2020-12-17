@@ -24,7 +24,7 @@
             <!-- Default box -->
             <div class="card">
               <div class="card-header">
-              <button class="btn btn-primary" data-toggle="modal" data-target="#crearCategoria">Crear categoría</button>
+              <button class="btn btn-primary" data-toggle="modal" data-target="#crearCategoria">Crear nueva categoría</button>
               </div>
               <div class="card-body">
                 <table class="table table-striped table-bordered dt-responsive tablaCategorias" width="100%">
@@ -107,7 +107,7 @@
 <div class="modal fade" id="editarCategoria" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form action="" method="post">
+      <form action="" method="post" enctype="multipart/form-data">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Editar categoría</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -116,7 +116,7 @@
         </div>
 
         <div class="modal-body">
-          <input type="hidden" name="idCategoria">
+          <input type="hidden" class="form-control" name="idCategoria">
           <div class="input-group mb-2">
             <div class="input-group-prepend">
               <div class="input-group-text"><i class="fas fa-list-ul"></i></div>

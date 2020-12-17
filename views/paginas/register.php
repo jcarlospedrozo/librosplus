@@ -33,14 +33,14 @@ if(isset($_GET["code"])){
                             Ingreso con Facebook
                         </p>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <a href="<?php echo $rutaGoogle; ?>">
                             <p class="p-2 bg-danger text-center text-white" style="cursor:pointer; border-radius: 5px">
                             <i class='bx bxl-google' style='color:#ffffff' ></i>
                                 Ingreso con Google
                             </p>
                         </a>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <label for="exampleInputEmail1">Nombre</label>
                         <input type="text" class="form-control" name="registroNombre" required>

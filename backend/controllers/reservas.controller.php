@@ -9,8 +9,9 @@ class ControladorReservas{
 	static public function ctrMostrarReservas($item, $valor){
 		$tabla1 = "usuarios";
 		$tabla2 = "reservas";
+		$tabla3 = "libros";
 
-		$respuesta = ModeloReservas::mdlMostrarReservas($tabla1, $tabla2, $item, $valor);
+		$respuesta = ModeloReservas::mdlMostrarReservas($tabla1, $tabla2, $tabla3, $item, $valor);
 
 		return $respuesta;
 	}

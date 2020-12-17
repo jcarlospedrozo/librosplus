@@ -32,7 +32,7 @@ if ($admin["perfil"] != "Administrador") {
             <!-- Default box -->
             <div class="card">
               <div class="card-header">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#crearAdministrador">Crear nuevos administradores</button>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#crearAdministrador">Crear nuevo administrador</button>
               </div>
               <div class="card-body">
                 <table class="table table-striped table-bordered dt-responsive tablaAdministradores" width="100%">

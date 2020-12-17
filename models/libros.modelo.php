@@ -20,4 +20,12 @@ Class ModeloLibros{
 		$stmt -> close();
 		$stmt = null;
 	}
+
+	static public function mdlMostrarLibrosNuevos($tabla1, $tabla2){
+		$stmt = Conexion::conectar()->prepare("SELECT $tabla1.*, $tabla2.* FROM $tabla1 INNER JOIN $tabla2 ON $tabla1.idAutor = $tabla2.idAutor ORDER BY idLibro DESC LIMIT 4");
+		$stmt -> execute();
+		return $stmt -> fetchAll();
+		$stmt -> close();
+		$stmt = null;
+	}
 }

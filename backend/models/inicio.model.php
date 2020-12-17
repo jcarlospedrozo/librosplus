@@ -100,12 +100,12 @@ class ModeloInicio{
 	Actualizar notificaciones
 	=============================================*/
 
-	static public function mdlActualizarNotificaciones($tabla, $tipo, $cantidad){
+	static public function mdlActualizarNotificaciones($tabla, $reservas, $cantidad){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET cantidad = :cantidad WHERE tipo = :tipo");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET cantidad = :cantidad WHERE reservas = :reservas");
 
 		$stmt -> bindParam(":cantidad", $cantidad, PDO::PARAM_STR);
-		$stmt -> bindParam(":tipo", $tipo, PDO::PARAM_STR);
+		$stmt -> bindParam(":reservas", $reservas, PDO::PARAM_STR);
 
 		if($stmt -> execute()){
 

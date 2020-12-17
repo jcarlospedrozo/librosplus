@@ -52,6 +52,7 @@ class TablaReservas{
 							
 						"'.($key+1).'",
 						"'.$value["codigoReserva"].'",
+						"'.$value["nombreLibro"].'",
 						"'.$value["nombreUsuario"].'",
 						"$ '.number_format($value["pagoReserva"],  2, ",", ".").'",
 						"'.$value["transaccionReserva"].'",

@@ -1,25 +1,19 @@
+<?php
+$librosNuevos = ControladorLibros::ctrMostrarLibrosNuevos();
+// $libros = ControladorLibros::ctrMostrarLibros($valor);
+// echo'<pre>'; print_r($categorias); echo'</pre>';
+?>
 <div class="small-container">
     <h2 class="title">Libros Nuevos</h2>
     <div class="row">
-        <div class="col-3 libros">
-            <img src="views/img/product-5.jpg" alt="">
-            <h3>Cien Años de Soledad</h3>
-            <p>Gabriel Garcia Márquez</p>
-        </div>
-        <div class="col-3 libros">
-            <img src="views/img/product-5.jpg" alt="">
-            <h3>Cien Años de Soledad</h3>
-            <p>Gabriel Garcia Márquez</p>
-        </div>
-        <div class="col-3 libros">
-            <img src="views/img/product-5.jpg" alt="">
-            <h3>Cien Años de Soledad</h3>
-            <p>Gabriel Garcia Márquez</p>
-        </div>
-        <div class="col-3 libros">
-            <img src="views/img/product-5.jpg" alt="">
-            <h3>Cien Años de Soledad</h3>
-            <p>Gabriel Garcia Márquez</p>
-        </div>
+        <?php foreach ($librosNuevos as $key => $value): ?>
+            <div class="col-3 libros">
+                <img src="<?php echo $servidor.$value["fotoLibro"] ?>" class="foto-libro" alt="">
+                <h3><?php echo $value['nombreLibro'] ?></h3>
+                <p><?php echo $value['nombreAutor'] ?></p>
+                <a href="<?php echo $ruta.$value["rutaCategoria"]; ?>" class="btn btn-primary boton">Ver todo</a>
+            </div>
+        
+        <?php endforeach ?>
     </div>
 </div>

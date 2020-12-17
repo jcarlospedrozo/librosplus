@@ -37,6 +37,7 @@
             <tr>
 
               <th style="width:10px">#</th>
+              <th>Foto</th>
               <th>Nombre</th>
               <th>Email</th>
               <th>Reservas</th>

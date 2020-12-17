@@ -12,7 +12,7 @@ class ControladorAutores{
     public function ctrRegistroAutor()
     {
         if (isset($_POST["nombreAutor"])) {
-            if (preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/', $_POST["nombreAutor"])) {
+            if (preg_match('/^[\/\=\\&\\$\\;\\_\\|\\*\\"\\<\\>\\?\\¿\\!\\¡\\:\\,\\.\\0-9a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nombreAutor"])) {
 
 				$tabla = "autores";
 

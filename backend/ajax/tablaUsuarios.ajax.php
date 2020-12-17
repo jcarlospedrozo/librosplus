@@ -12,7 +12,7 @@ class TablaUsuarios{
 	public function mostrarTabla(){
 
 		$usuarios = ControladorUsuarios::ctrMostrarUsuarios(null, null);
-
+		// echo '<pre>'; print_r($usuarios); echo '</pre>';
 		if(count($usuarios)== 0){
 
  			$datosJson = '{"data": []}';
@@ -21,7 +21,8 @@ class TablaUsuarios{
 
 			return;
 
- 		}
+		 }
+		 
 
  		$datosJson = '{
 
@@ -29,15 +30,25 @@ class TablaUsuarios{
 
 	 	foreach ($usuarios as $key => $value) {
 
+			if($value["fotoUsuario"] != ""){
+
+				$foto = "<img src='".$value["fotoUsuario"]."' class='rounded-circle' width='50px'>";
+
+			}else{
+
+				$foto = "<img src='views/img/usuarios/default/default.png' class='rounded-circle' width='50px'>";
+			}
+
 			/*=============================================
 			CANTIDAD DE RESERVAS
 			=============================================*/	
 
-			$reservas = "<div class='sumarReservas' idUsuario='".$value["idUsuario"]."'>0</div>";
+			$reservas = "<div class='sumarReservas' idusuario='".$value["idUsuario"]."'>0</div>";
 			
 			$datosJson.= '[
 							
 						"'.($key+1).'",
+						"'.$foto.'",
 						"'.$value["nombreUsuario"].'",
 						"'.$value["emailUsuario"].'",
 						"'.$reservas.'"

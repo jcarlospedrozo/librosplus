@@ -1,28 +1,48 @@
-<div class="content-wrapper" style="min-height: 1667.12px;">
-  <!-- Content Header (Page header) -->
+<div class="content-wrapper" style="min-height: 717px;">
+
   <section class="content-header">
+
     <div class="container-fluid">
+
       <div class="row mb-2">
+
         <div class="col-sm-6">
+
           <h1>Libros</h1>
+
         </div>
+
         <div class="col-sm-6">
+
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+
+            <li class="breadcrumb-item"><a href="inicio">Inicio</a></li>
             <li class="breadcrumb-item active">Libros</li>
+
           </ol>
+
         </div>
+
       </div>
+
     </div><!-- /.container-fluid -->
+
   </section>
 
   <!-- Main content -->
   <section class="content">
+
     <div class="container-fluid">
+
       <div class="row">
-        <!-- listado libros -->
-        <div class="col-xl-5">
-          <div class="card card-outline">
+
+        <!--=====================================
+        Listado de habitaciones
+        ======================================-->
+
+        <div class="col-12 col-xl-5">
+
+          <div class="card card-primary card-outline">
 
             <!-- header-card -->
 
@@ -60,8 +80,8 @@
 
                 <tbody>
 
-                  <!-- <tr>
-
+                  <!--  <tr>
+                    
                     <td>1</td>
                     <td>Suite</td>
                     <td>Oriental</td>
@@ -69,7 +89,7 @@
                       <button class="btn btn-secondary btn-sm">
                         <i class="far fa-eye"></i>
                       </button>
-                    </td>
+                    </td> 
 
                   </tr> -->
 
@@ -83,23 +103,33 @@
 
         </div>
 
-        <!-- editar libros -->
+        <!--=====================================
+        Editor de habitaciones
+        ======================================-->
+
+
         <?php
-        if(isset($_GET["idLibro"])){
-          $libro = ControladorLibros::ctrMostrarLibros($_GET["idLibro"]);
-          // echo '<pre>'; print_r($libro); echo '</pre>';
-        }else{
+
+        if (isset($_GET["idLibro"])) {
+
+          $libro = ControladorLibros::ctrMostrarlibros($_GET["idLibro"]);
+          // echo '<pre>'; print_r($libro);  echo '</pre>';
+        } else {
+
           $libro = null;
         }
+
+
+
         ?>
-        <div class="col-xl-7">
-          <div class="card">
+
+        <div class="col-12 col-xl-7">
+
+          <div class="card card-primary card-outline">
 
             <!-- header-card -->
 
             <div class="card-header">
-
-              <!-- <h5 class="card-title"><?php echo $libro["nombreCategoria"] ?> / <?php echo $libro["nombreLibro"] ?></h5> -->
 
               <div class="preload"></div>
 
@@ -115,9 +145,9 @@
 
                 if ($libro != null) {
 
-                  $fotoLibro = $libro["fotoLibro"];
+                  // $fotoLibro = $libro["fotoLibro"];
 
-                  echo '<button type="button" class="btn btn-danger btn-sm eliminarLibro" idEliminar="'.$libro["idLibro"].'" fotoLibro="'. $fotoLibro.'">
+                  echo '<button type="button" class="btn btn-danger btn-sm eliminarLibro" idEliminar="' . $libro["idLibro"] . '" imagenLibro="' . $libro["fotoLibro"] . '">
                   
                           <i class="fas fa-trash"></i> 
 
@@ -133,7 +163,7 @@
 
             <div class="card-body">
 
-              <input type="hidden" class="idLibro" value="<?php echo $libro["idLibro"] ?>">
+              <input type="hidden" class="idLibro" value="<?php echo $libro['idLibro']?>">
 
               <!-- Categoría y nombre de la habitación -->
 
@@ -141,20 +171,20 @@
 
                 <div class="form-inline mx-3 px-3 border border-left-0 border-top-0 border-bottom-0">
 
-                  <p class="mr-sm-2">Elige la Categoría:</p>
+                  <p class="mr-sm-2">Selecciona la Categoría:</p>
 
                   <?php
 
                   if ($libro != null) {
 
-                    echo '<select class="form-control seleccionarTipo" readonly>
+                    echo '<select class="form-control seleccionarCategoria" readonly>
                         
                         <option value="' . $libro["idCategoria"] . ',' . $libro["nombreCategoria"] . '">' . $libro["nombreCategoria"] . '</option>
 
                        </select>';
                   } else {
 
-                    echo '<select class="form-control seleccionarTipo">
+                    echo '<select class="form-control seleccionarCategoria">
 
                          <option value="">Seleccione</option>';
 
@@ -180,10 +210,10 @@
 
                   if ($libro != null) {
 
-                    echo '<input type="text" class="form-control seleccionarNombre" value="' . $libro["nombreLibro"] . '" readonly>';
+                    echo '<input type="text" class="form-control seleccionarLibro" value="' . $libro["nombreLibro"] . '" readonly>';
                   } else {
 
-                    echo '<input type="text" class="form-control seleccionarNombre">';
+                    echo '<input type="text" class="form-control seleccionarLibro">';
                   }
 
                   ?>
@@ -196,25 +226,7 @@
 
                 <div class="form-inline mx-3 px-3 border border-left-0 border-top-0 border-bottom-0">
 
-                  <p class="mr-sm-2">Elige el precio:</p>
-
-                  <?php
-
-                  if ($libro != null) {
-
-                    echo '<input type="text" class="form-control seleccionarPrecio" value="' . $libro["precioLibro"] . '" readonly>';
-                  } else {
-
-                    echo '<input type="text" class="form-control seleccionarPrecio">';
-                  }
-
-                  ?>
-
-                </div>
-
-                <div class="form-inline">
-
-                  <p class="mr-sm-2">Selecciona el autor del libro:</p>
+                  <p class="mr-sm-2">Selecciona el autor:</p>
 
                   <?php
 
@@ -245,6 +257,24 @@
 
                 </div>
 
+                <div class="form-inline">
+
+                  <p class="mr-sm-2">Escribe el precio:</p>
+
+                  <?php
+
+                  if ($libro != null) {
+
+                    echo '<input type="text" class="form-control seleccionarPrecio" value="' . $libro["precioLibro"] . '">';
+                  } else {
+
+                    echo '<input type="text" class="form-control seleccionarPrecio">';
+                  }
+
+                  ?>
+
+                </div>
+
               </div>
 
               <!-- Galería -->
@@ -253,55 +283,48 @@
 
                 <div class="card-header pl-2 pl-sm-3">
 
-                  <h5>Imagen del libro:</h5>
+                  <h5>Imagen del libro</h5>
 
                 </div>
 
-                <div class="card-body">
+                <div class="card-body mx-auto subirImgLibro">
 
-                <ul class="row p-0 vistaGaleria">
-                    <?php
+                  <!-- <div class="form-group my-2"> -->
+                    <!-- <div class="btn btn-default btn-file">
+                      <i class="fas fa-paperclip"></i> Adjuntar Imagen del libro
+                      <input type="file" name="subirImgLibro">
+                    </div> -->
+                    <!-- <img class="previsualizarImgLibro img-fluid py-2"> -->
+                    <!-- </div> -->
+                    <?php if ($libro != null): ?>
+                    <img  class="previsualizarImgLibroAntigua" src="<?php echo $libro['fotoLibro']; ?>">
 
-                    if ($libro != null) {
+                    <?php endif ?>
 
-                      $fotoLibro = $libro["fotoLibro"];
-
-                        echo '<li class="col-12 col-md-6 col-lg-3 card px-3 rounded-0 shadow-none">
-                      
-                                <img class="card-img-top" src="' . $fotoLibro . '">
-
-                                <div class="card-img-overlay p-0 pr-3">
-                                  
-                                   <button class="btn btn-danger btn-sm float-right shadow-sm quitarFotoAntigua" temporal="' . $fotoLibro . '">
-                                     
-                                     <i class="fas fa-times"></i>
-
-                                   </button>
-
-                                </div>
-
-                              </li>';
-                    }
-
-                    ?>
-                  </ul>
                 </div>
 
-                <input type="hidden" class="inputNuevaFoto">
+                <!-- <input type="hidden" class="inputNuevaGaleria">
 
-                <input type="hidden" class="inputAntiguaFoto" value="<?php echo $fotoLibro; ?>">
+                <input type="hidden" class="inputAntiguaGaleria" value="<?php echo $galeria; ?>"> -->
 
                 <div class="card-footer">
+                  <input type="hidden" class="fotoLibroAntigua" value="<?php echo $libro["fotoLibro"]; ?>">
+                  <div class="custom-file">
+                    <input type="file" id="fotoLibro" class="custom-file-input">
+                    <label class="custom-file-label" for="fotoLibro">Agregar imagen de libro</label>
+                  </div>
+                  
 
-                  <input type="file" id="fotoLibro" class="d-none">
+                  <!-- <label for="galeria" class="text-dark text-center py-5 border rounded bg-white w-100 subirGaleria"> -->
 
-                  <label for="fotoLibro" class="text-dark text-center py-5 border rounded bg-white w-100 subirImagen">
-                    Haz clic aquí o arrastra las imágenes <br>
-                  </label>
+                     <!-- Haz clic aquí o arrastra la imagen <br>
+                     <span class="help-block small">Dimensiones: 940px * 480px | Peso Max. 2MB | Formato: JPG o PNG</span> -->
+                  <!-- </label> -->
 
                 </div>
 
               </div>
+
 
               <!-- descripción -->
 
@@ -352,9 +375,9 @@
 
                 if ($libro != null) {
 
-                  $fotoLibro = $libro["fotoLibro"];
+                  // $fotoLibro = $libro["fotoLibro"];
 
-                  echo '<button type="button" class="btn btn-danger btn-sm eliminarLibro" idEliminar="' . $libro["idLibro"] . '" fotoLibro="' . $fotoLibro . '">
+                  echo '<button type="button" class="btn btn-danger btn-sm eliminarLibro" idEliminar="' . $libro["idLibro"] . '" imagenLibro="' . $libro["fotoLibro"] . '">
                   
                           <i class="fas fa-trash"></i> 
 
@@ -372,8 +395,12 @@
           </div>
 
         </div>
+
       </div>
+
     </div>
+
   </section>
   <!-- /.content -->
+
 </div>

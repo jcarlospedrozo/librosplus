@@ -5,6 +5,10 @@
     </script>';
     return;
   }
+
+  if(isset($_GET["notification"])){
+    $respuesta = ControladorInicio::ctrActualizarNotificaciones("reservas", 0);
+  }
  ?>
 
 <div class="content-wrapper" style="min-height: 1667.12px;">
@@ -47,6 +51,7 @@
 
                     <th style="width:10px">#</th>
                     <th>Código</th>
+                    <th>Libro</th>
                     <th>Usuario</th>
                     <th>Pago</th>
                     <th>Transacción</th>

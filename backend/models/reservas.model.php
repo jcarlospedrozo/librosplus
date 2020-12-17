@@ -8,11 +8,11 @@ class ModeloReservas{
 	MOSTRAR USUARIOS-RESERVAS CON INNER JOIN
 	=============================================*/
 
-	static public function mdlMostrarReservas($tabla1, $tabla2, $item, $valor){
+	static public function mdlMostrarReservas($tabla1, $tabla2, $tabla3, $item, $valor){
 
 		if($item != null && $valor != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT $tabla1.*, $tabla2.* FROM $tabla1 INNER JOIN $tabla2 ON $tabla1.idUsuario = $tabla2.idUsuario WHERE $item = :$item");
+			$stmt = Conexion::conectar()->prepare("SELECT $tabla1.*, $tabla2.*, $tabla3.* FROM $tabla1 INNER JOIN $tabla2 ON $tabla1.idUsuario = $tabla2.idUsuario INNER JOIN $tabla3 ON $tabla3.idLibro = $tabla2.idLibro WHERE $tabla2.$item = :$item");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -22,7 +22,7 @@ class ModeloReservas{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT $tabla1.*, $tabla2.* FROM $tabla1 INNER JOIN $tabla2 ON $tabla1.idUsuario = $tabla2.idUsuario ORDER BY $tabla2.idReserva DESC");
+			$stmt = Conexion::conectar()->prepare("SELECT $tabla1.*, $tabla2.*, $tabla3.* FROM $tabla1 INNER JOIN $tabla2 ON $tabla1.idUsuario = $tabla2.idUsuario INNER JOIN $tabla3 ON $tabla3.idLibro = $tabla2.idLibro ORDER BY $tabla2.idReserva DESC");
 
 			$stmt -> execute();
 

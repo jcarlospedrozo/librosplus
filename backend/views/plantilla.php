@@ -27,6 +27,8 @@ if(isset($_SESSION["idBackend"])){
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.22/r-2.2.6/datatables.min.css"/>
     <link rel="stylesheet" href="views/css/plugins/adminlte.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+    <link rel="stylesheet" href="views/css/plugins/jquery.pano.css">
+
 
     <style>
         .fc-unthemed .fc-today{
@@ -67,6 +69,7 @@ if(isset($_SESSION["idBackend"])){
 	<script src="views/js/plugins/datepicker/js/bootstrap-datepicker.min.js"></script>
 	<script src="views/js/plugins/datepicker/locales/bootstrap-datepicker.es.min.js"></script>
     <script src="views/js/plugins/adminlte.min.js"></script>
+    <script src="views/js/plugins/jquery.pano.js"></script>
 </head>
 
 <?php if(!isset($_SESSION["validarSesionBackend"])): 

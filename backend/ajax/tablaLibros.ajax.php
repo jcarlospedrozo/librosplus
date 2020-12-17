@@ -1,11 +1,13 @@
 <?php
 
-include_once "../controllers/libros.controller.php";
-include_once "../models/libros.model.php";
+require_once "../controllers/libros.controller.php";
+require_once "../models/libros.model.php";
 
 class TablaLibros{
 
-	//Tabla Categorías
+	/*=============================================
+	Tabla Categorías
+	=============================================*/ 
 
 	public function mostrarTabla(){
 
@@ -57,7 +59,9 @@ class TablaLibros{
 
 }
 
-//Tabla Libros
+/*=============================================
+Tabla Habitaciones
+=============================================*/ 
 
 $tabla = new TablaLibros();
 $tabla -> mostrarTabla();

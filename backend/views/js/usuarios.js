@@ -62,7 +62,7 @@ $("document").ready(function () {
 
     for (var i = 0; i < sumarReservas.length; i++) {
 
-        idUsuario.push($(sumarReservas[i]).attr("idUsuario"));
+        idUsuario.push($(sumarReservas[i]).attr("idusuario"));
 
         var datos = new FormData();
         datos.append("idUsuarioR", idUsuario[i]);
@@ -79,15 +79,16 @@ $("document").ready(function () {
             success: function (respuesta) {
 
                 sumar.push(respuesta.length);
-                for (var f = 0; f < sumar.length; f++) {
+                for (var j = 0; j < sumar.length; j++) {
 
-                    $(sumarReservas[f]).html(sumar[f]);
+                    $(sumarReservas[j]).html(sumar[j]);
 
                 }
-
+                
             }
-
+            
         })
-
+        
     }
+    console.log("sumar", sumar);
 })

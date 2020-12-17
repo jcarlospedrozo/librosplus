@@ -1,70 +1,70 @@
 <?php
 
-class ControladorLibros
-{
-	//Mostrar libros
-	static public function ctrMostrarLibros($valor)
-	{
+class ControladorLibros{
+
+	/*=============================================
+	MOSTRAR CATEGORIAS-HABITACIONES CON INNER JOIN
+	=============================================*/
+
+	static public function ctrMostrarLibros($valor){
+
 		$tabla1 = "categorias";
 		$tabla2 = "libros";
 		$tabla3 = "autores";
+
 		$respuesta = ModeloLibros::mdlMostrarLibros($tabla1, $tabla2, $tabla3, $valor);
+
 		return $respuesta;
+
 	}
 
-	//Guardar libro
-	static public function ctrNuevoLibro($datos)
-	{
+	/*=============================================
+	Nueva habitación
+	=============================================*/
 
-		if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $datos["nombreLibro"]) && preg_match('/^[\/\=\\&\\$\\;\\_\\|\\*\\"\\<\\>\\?\\¿\\!\\¡\\:\\,\\.\\0-9a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $datos["descripcionLibro"])) {
+	static public function ctrNuevoLibro($datos){
 
-			if ($datos["fotoLibro"] != "") {
+		if(preg_match('/^[\/\=\\&\\$\\;\\_\\-\\|\\*\\"\\<\\>\\?\\¿\\!\\¡\\:\\,\\.\\0-9a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $datos["nombreLibro"]) && 
+		   preg_match('/^[\/\=\\&\\$\\;\\_\\-\\|\\*\\"\\<\\>\\?\\¿\\!\\¡\\:\\,\\.\\0-9a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $datos["descripcionLibro"])){
 
-				$ruta = array();
-				$guardarRuta = array();
+			if($datos["fotoLibro"] != ""){
+				
+				list($ancho, $alto) = getimagesize($datos["fotoLibro"]);
 
-				$fotoLibro = json_decode($datos["fotoLibro"], true);
+				$nuevoAncho = 550;
+				$nuevoAlto = 604;
 
-				for ($i = 0; $i < count($fotoLibro); $i++) {
+				$directorio = "../views/img/".$datos["nombreCategoria"];	
 
-					list($ancho, $alto) = getimagesize($fotoLibro[$i]);
+				$ruta = strtolower($directorio."/".$datos["nombreLibro"].".png");
 
-					$nuevoAncho = 550;
-					$nuevoAlto = 604;
+				$origen = imagecreatefrompng($datos["fotoLibro"]);
 
-					/*=============================================
-					Creamos el directorio donde vamos a guardar la imagen
-					=============================================*/
+				$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);	
 
-					$directorio = "../views/img/" . $datos["nombreCategoria"];
+				imagealphablending($destino, FALSE);
+				imagesavealpha($destino, TRUE);
 
-					array_push($ruta, strtolower($directorio . "/" . $datos["nombreLibro"] . ($i + 1) . ".jpg"));
+				imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
 
-					$origen = imagecreatefromjpeg($fotoLibro[$i]);
+				imagepng($destino, $ruta);	
 
-					$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+			}else{
 
-					imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
-					imagejpeg($destino, $ruta[$i]);
-
-					array_push($guardarRuta, substr($ruta[$i], 3));
-				}
-			} else {
-
-				echo '<script>
+				echo'<script>
 
 						Swal.fire({
 								icon:"error",
 							  	title: "¡Corregir!",
-							  	text: "¡La imagen no puede estar vacía",
+							  	text: "¡El recorrido virtual no puede estar vacío",
 							  	showConfirmButton: true,
 								confirmButtonText: "Cerrar"
 							  
 						}).then((result) => {
-							if(result.value){   
-								history.back();
-							} 
+
+								if(result.value){   
+								    history.back();
+								  } 
 						});
 
 				</script>';
@@ -72,22 +72,21 @@ class ControladorLibros
 				return;
 			}
 
+
 			$tabla = "libros";
 
-			$datos = array(
-				"nombreLibro" => $datos["nombreLibro"],
-				"descripcionLibro" => $datos["descripcionLibro"],
-				"fotoLibro" => json_encode($guardarRuta),
-				"precioLibro" => $datos["precioLibro"],
-				"idCategoria" => $datos["idCategoria"],
-				"idAutor" => $datos["idAutor"]
-			);
+			$datos = array("nombreLibro" => $datos["nombreLibro"],
+							"descripcionLibro" => $datos["descripcionLibro"],
+							"fotoLibro" => substr($ruta,3),
+							"precioLibro" => $datos["precioLibro"],
+							"idCategoria" => $datos["idCategoria"],
+							"idAutor" => $datos["idAutor"]);
 
 			$respuesta = ModeloLibros::mdlNuevoLibro($tabla, $datos);
 
-			return $respuesta;
-		}
-		else {
+			return $respuesta; 
+
+		}else{
 
 			echo '<script>
 
@@ -111,138 +110,57 @@ class ControladorLibros
 
 				</script>';
 		}
+
+
 	}
 
-	/*=============================================
-	Editar habitación
-	=============================================*/
+	// /*=============================================
+	// Editar habitación
+	// =============================================*/
 
 	static public function ctrEditarLibro($datos){
 
-		if(preg_match('/^[\/\=\\&\\$\\;\\_\\-\\|\\*\\"\\<\\>\\?\\¿\\!\\¡\\:\\,\\.\\0-9a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $datos["descripcion"])){
+		if(preg_match('/^[\/\=\\&\\$\\;\\_\\-\\|\\*\\"\\<\\>\\?\\¿\\!\\¡\\:\\,\\.\\0-9a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $datos["descripcionLibro"])){
 		   	
-			//Validamos que la galería no venga vacía
+			if($datos["fotoLibro"] != "undefined"){	
 
-		   	if($datos["fotoLibroAntigua"] == "" && $datos["fotoLibro"] == ""){
 
-				echo'<script>
+				// unlink("../".$datos["fotoLibroAntigua"]);
+				
+				list($ancho, $alto) = getimagesize($datos["fotoLibro"]);
 
-						Swal.fire({
-								icon:"error",
-							  	title: "¡Corregir!",
-							  	text: "¡La galería no puede estar vacía",
-							  	showConfirmButton: true,
-								confirmButtonText: "Cerrar"
-							  
-						}).then((result) => {
+				$nuevoAncho = 550;
+				$nuevoAlto = 604;
 
-								if(result.value){   
-								    history.back();
-								  } 
-						});
+				$directorio = "../views/img/".$datos["nombreCategoria"];	
 
-				</script>';
+				$ruta = strtolower($directorio."/".$datos["nombreLibro"].".png");
 
-				return;
-			}
+				$origen = imagecreatefromjpeg($datos["fotoLibro"]);
 
-			//Eliminar las fotos de la galería de la carpeta
+				$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);	
 
-			$traerLibro = ModeloLibros::mdlMostrarLibros("categorias", "libros", "autores", $datos["idLibro"]);
+				imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
 
-			if($datos["fotoLibroAntigua"] != ""){	
+				imagejpeg($destino, $ruta);
 
-				$fotoLibroBD = json_decode($traerLibro["fotoLibro"], true);
-
-				$fotoLibroAntigua = explode("," , $datos["fotoLibroAntigua"]);
-
-				$guardarRuta = $fotoLibroAntigua;
-		
-				$borrarFoto = array_diff($fotoLibroBD, $fotoLibroAntigua);
-
-				foreach ($borrarFoto as $key => $valueFoto){
-						
-					unlink("../".$valueFoto);
-
-				}
+				$ruta = substr($ruta,3);
 
 			}else{
 
-
-				$fotoLibroBD = json_decode($traerLibro["fotoLibro"], true);
-
-				foreach ($fotoLibroBD as $key => $valueFoto){
-
-					unlink("../".$valueFoto);
-
-				}
-
+				$ruta = $datos["fotoLibroAntigua"];
 				
 			}
-		   	
-		   	// Cuando vienen fotos nuevas
-
-		   	if($datos["fotoLibro"] != ""){
-
-			   	$ruta = array();
-			   	$guardarRuta = array();
-
-				$fotoLibro = json_decode($datos["fotoLibro"], true);
-				$fotoLibroAntigua = explode("," , $datos["fotoLibroAntigua"]);
-
-				for($i = 0; $i < count($fotoLibro); $i++){
-
-					list($ancho, $alto) = getimagesize($fotoLibro[$i]);
-
-					$nuevoAncho = 550;
-					$nuevoAlto = 604;
-
-					$aleatorio = mt_rand(100,999); 
-
-					/*=============================================
-					Creamos el directorio donde vamos a guardar la imagen
-					=============================================*/
-
-					$directorio = "../views/img/".$datos["nombreCategoria"];	
-
-					array_push($ruta, strtolower($directorio."/".$datos["estilo"].$aleatorio.".jpg"));
-
-					$origen = imagecreatefromjpeg($fotoLibro[$i]);
-
-					$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);	
-
-					imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
-					imagejpeg($destino, $ruta[$i]);	
-
-					array_push($guardarRuta, substr($ruta[$i], 3));
-
-				}
-
-				// Agregamos las fotos antiguas
-
-				if($datos["fotoLibroAntigua"] != ""){
-
-					foreach ($fotoLibroAntigua as $key => $value) {
-						
-						array_push($guardarRuta, $value);
-					}
-
-				}
-
-			}
-
-			
 
 			$tabla = "libros";
 
 			$datos = array("idLibro" => $datos["idLibro"],
-			"nombreLibro" => $datos["nombreLibro"],
-			"descripcionLibro" => $datos["descripcionLibro"],
-			"fotoLibro" => json_encode($guardarRuta),
-			"precioLibro" => $datos["precioLibro"],
-			"idCategoria" => $datos["idCategoria"],
-			"idAutor" => $datos["idAutor"]);
+						   "nombreLibro" => $datos["nombreLibro"],
+						   "descripcionLibro" => $datos["descripcionLibro"],
+						   "fotoLibro" => $ruta,
+						   "precioLibro" => $datos["precioLibro"],
+						   "idCategoria" => $datos["idCategoria"],
+						   "idAutor" => $datos["idAutor"],);
 
 			$respuesta = ModeloLibros::mdlEditarLibro($tabla, $datos);
 
@@ -252,15 +170,15 @@ class ControladorLibros
 
 			echo '<script>
 
-					swal({
+					Swal.fire({
 
-						type:"error",
-						title: "¡CORREGIR!",
+						icon:"error",
+						title: "¡Corregir!",
 						text: "¡No se permiten caracteres especiales en ninguno de los campos!",
 						showConfirmButton: true,
 						confirmButtonText: "Cerrar"
 
-					}).then(function(result){
+					}).then((result) => {
 
 						if(result.value){
 
@@ -276,19 +194,25 @@ class ControladorLibros
 
 	}
 
-	//Eliminar Habitación
+	/*=============================================
+	Eliminar Libro
+	=============================================*/
 
 	static public function ctrEliminarLibro($datos){
 		
 		// Eliminamos fotos de la galería
 
-		$fotoLibro = explode("," , $datos["fotoLibro"]);
+		// $galeriaHabitacion = explode("," , $datos["galeriaHabitacion"]);
 
-		foreach ($fotoLibro as $key => $value) {
+		// foreach ($galeriaHabitacion as $key => $value) {
 			
-			unlink("../".$value);
+		// 	unlink("../".$value);
 		
-		}	
+		// }
+
+		// Eliminamos imagen 360°
+
+		unlink("../".$datos["imagenLibro"]);	
 
 		$tabla = "libros";
 
@@ -297,4 +221,6 @@ class ControladorLibros
 		return $respuesta;
 
 	}
+
+
 }

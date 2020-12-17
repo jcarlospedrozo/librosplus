@@ -58,7 +58,7 @@ function limit($iterable, $limit) {
   </div>
       <!-- /.card-body -->
   <div class="card-footer text-right">
-    <a href="reservas" class="btn btn-info mt-3">Ver usuarios</a>
+    <a href="usuarios" class="btn btn-info mt-3">Ver usuarios</a>
   </div>
       <!-- /.card-footer -->
 </div>

@@ -79,11 +79,11 @@ class ControladorInicio{
 	Actualizar notificaciones
 	=============================================*/
 
-	static public function ctrActualizarNotificaciones($tipo, $cantidad){
+	static public function ctrActualizarNotificaciones($reservas, $cantidad){
 
 		$tabla = "notificaciones";
 
-		$respuesta = ModeloInicio::mdlActualizarNotificaciones($tabla, $tipo, $cantidad);
+		$respuesta = ModeloInicio::mdlActualizarNotificaciones($tabla, $reservas, $cantidad);
 		
 		return $respuesta;
 

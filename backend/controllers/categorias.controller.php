@@ -25,7 +25,7 @@ class ControladorCategorias{
 					Creamos el directorio donde vamos a guardar la imagen
 					=============================================*/
 
-					$directorio = "views/img/categorias/".strtolower($_POST["nombreCategoria"]);	
+					$directorio = "views/img/".strtolower($_POST["nombreCategoria"]);	
 
 					if(!file_exists($directorio)){	
 						mkdir($directorio, 0755);
@@ -125,7 +125,7 @@ class ControladorCategorias{
 					$nuevoAncho = 550;
 					$nuevoAlto = 604;
 
-					$directorio = "views/img/categorias/".strtolower($_POST["editarNombreCategoria"]);	
+					$directorio = "views/img/".strtolower($_POST["editarNombreCategoria"]);	
 				
 					/*=============================================
 					PRIMERO PREGUNTAMOS SI EXISTE OTRA IMAGEN EN LA BD
@@ -141,16 +141,16 @@ class ControladorCategorias{
 
 					if($_FILES["editarImgCategoria"]["type"] == "image/jpeg"){
 						$aleatorio = mt_rand(100,999);
-						$ruta = $directorio."/".$aleatorio.".jpg";
+						$ruta = $directorio."/portada.jpg";
 						$origen = imagecreatefromjpeg($_FILES["editarImgCategoria"]["tmp_name"]);
 						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);	
 						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
 						imagejpeg($destino, $ruta);	
 					}
-
+					// $ruta = $directorio."/portada.png";
 					else if($_FILES["editarImgCategoria"]["type"] == "image/png"){
 						$aleatorio = mt_rand(100,999);
-						$ruta = $directorio."/".$aleatorio.".png";
+						$ruta = $directorio."/portada.png";
 						$origen = imagecreatefrompng($_FILES["editarImgCategoria"]["tmp_name"]);						
 						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 						imagealphablending($destino, FALSE);
@@ -228,7 +228,7 @@ class ControladorCategorias{
 	//Eliminar Categoria
 	static public function ctrEliminarCategoria($id, $ruta, $tipo){		
 		unlink("../".$ruta);
-		rmdir("../views/img/categorias/".strtolower($tipo));
+		rmdir("../views/img/".strtolower($tipo));
 
 		$tabla = "categorias";
 		$respuesta = ModeloCategorias::mdlEliminarCategoria($tabla, $id);

@@ -57,28 +57,46 @@ Class ControladorUsuarios{
 
                     if (!$envio) {
                         echo '<script>
-                        swal({
+                        Swal.fire({
                             icon: "error",
                             title: "¡Error!",
-                                text: "¡Ha ocurrido un problema enviando verificación de correo electrónico a '.$_POST["registroEmail"].$mail->ErrorInfo.', por favor inténtelo nuevamente"
+								text: "¡Ha ocurrido un problema enviando verificación de correo electrónico a '.$_POST["registroEmail"].$mail->ErrorInfo.', por favor inténtelo nuevamente",
+								showConfirmButton: true,
+								confirmButtonText: "Cerrar"
+							}).then((result) => {
+								if(result.value){   
+									history.back();
+								}
 							})
                         </script>';
                     } else {
                         echo'<script>
-                        swal({
+                        Swal.fire({
                             title: "¡Su cuenta ha sido creada correctamente!",
                             text: "¡Por favor revise la bandeja de entrada o la carpeta de SPAM de su correo electrónico para verificar la cuenta!",
-                            icon: "success"
-                        })
+							icon: "success",
+							showConfirmButton: true,
+							confirmButtonText: "Cerrar"
+                        }).then((result) => {
+							if(result.value){   
+								history.back();
+							}
+						})
 						</script>';
                     }
                 }
             } else {
 				echo'<script>
-					swal({
+					Swal.fire({
                         icon:"error",
                         title: "¡Corregir!",
-                        text: "¡No se permiten caracteres especiales!"
+						text: "¡No se permiten caracteres especiales!",
+						showConfirmButton: true,
+						confirmButtonText: "Cerrar"
+					}).then((result) => {
+						if(result.value){   
+							history.back();
+						}
 					})
 				</script>';
 			}
@@ -113,10 +131,16 @@ Class ControladorUsuarios{
                 if ($respuesta["emailUsuario"] == $_POST["ingresoEmail"] && $respuesta["contrasenaUsuario"] == $encriptarPassword) {
                     if ($respuesta["verificacion"] == 0) {
                         echo'<script>
-								swal({
+								Swal.fire({
                                     icon:"error",
                                     title: "¡Error!",
-                                    text: "¡El correo electrónico aún no ha sido verificado, por favor revise la bandeja de entrada o la carpeta de SPAM de su correo electrónico para verificar la cuenta!"
+									text: "¡El correo electrónico aún no ha sido verificado, por favor revise la bandeja de entrada o la carpeta de SPAM de su correo electrónico para verificar la cuenta!",
+									showConfirmButton: true,
+									confirmButtonText: "Cerrar"
+								}).then((result) => {
+									if(result.value){   
+										history.back();
+									}
 								})
 							</script>';
                         return;
@@ -135,20 +159,32 @@ Class ControladorUsuarios{
                     }
                 } else {
                     echo'<script>
-					swal({
+					Swal.fire({
                         icon:"error",
                         title: "¡Error!",
-                        text: "¡El email o contraseña no coinciden!"
+                        text: "¡El email o contraseña no coinciden!",
+						showConfirmButton: true,
+						confirmButtonText: "Cerrar"
+					}).then((result) => {
+						if(result.value){   
+							history.back();
+						}
 					})
                     </script>';
                 }
 
             } else {
                 echo'<script>
-					swal({
+					Swal.fire({
                         icon:"error",
                         title: "¡Corregir!",
-                        text: "¡No se permiten caracteres especiales!"
+                        text: "¡No se permiten caracteres especiales!",
+						showConfirmButton: true,
+						confirmButtonText: "Cerrar"
+					}).then((result) => {
+						if(result.value){   
+							history.back();
+						}
 					})
 				</script>';
             }
@@ -252,11 +288,17 @@ Class ControladorUsuarios{
                 
                 else{
 					echo'<script>
-						swal({
+						Swal.fire({
                             icon:"error",
                             title: "¡Corregir!",
-                            text: "¡No se permiten formatos diferentes a JPG y/o PNG!"
-						})}
+                            text: "¡No se permiten formatos diferentes a JPG y/o PNG!",
+							showConfirmButton: true,
+							confirmButtonText: "Cerrar"
+						}).then((result) => {
+							if(result.value){   
+								history.back();
+							} 
+						})
 					</script>';
                 }
                 $ruta = substr($ruta, 8);
@@ -272,10 +314,16 @@ Class ControladorUsuarios{
             if($actualizarFotoPerfil == "ok"){
 
 				echo '<script>
-					swal({
+					Swal.fire({
 						icon:"success",
 					  	title: "Correcto!",
-					  	text: "¡La foto de perfil ha sido actualizada!"
+						text: "¡La foto de perfil ha sido actualizada!",
+						showConfirmButton: true,
+						confirmButtonText: "Cerrar"
+					}).then((result) => {
+						if(result.value){   
+							history.back();
+						} 
 					})
 				</script>';
 			}
@@ -295,13 +343,13 @@ Class ControladorUsuarios{
 
 				if($actualizarPassword == "ok"){
 					echo '<script>
-						swal({
+						Swal.fire({
 							icon:"success",
 						  	title: "¡Correcto!",
 						  	text: "¡Sus datos han sido actualizados!",
 						  	showConfirmButton: true,
 							confirmButtonText: "Cerrar"
-						}).then(function(result){
+						}).then((result) => {
                             if(result.value){   
                                 history.back();
                             } 
@@ -310,13 +358,13 @@ Class ControladorUsuarios{
 				}
 			}else{
 				echo'<script>
-					swal({
+					Swal.fire({
 						icon:"error",
 					  	title: "¡Corregir!",
 					  	text: "¡No se permiten caracteres especiales!",
 					  	showConfirmButton: true,
 						confirmButtonText: "Cerrar"
-					}).then(function(result){
+					}).then((result) => {
                         if(result.value){   
                             history.back();
                         } 
@@ -410,32 +458,50 @@ Class ControladorUsuarios{
 						if(!$envio){
 
 							echo'<script>
-								swal({
+								Swal.fire({
                                     icon:"error",
                                     title: "¡Error!",
-                                    text: "¡Ha ocurrido un problema enviando verificación de correo electrónico a '.$_POST["emailRecuperarPassword"].$mail->ErrorInfo.', por favor inténtelo nuevamente"
-								})
+                                    text: "¡Ha ocurrido un problema enviando verificación de correo electrónico a '.$_POST["emailRecuperarPassword"].$mail->ErrorInfo.', por favor inténtelo nuevamente",
+									showConfirmButton: true,
+									confirmButtonText: "Cerrar"
+								}).then((result) => {
+									if(result.value){   
+										history.back();
+									} 
+								});
 							</script>';
 
 						}else{
 
 
 							echo'<script>
-								swal({
+								Swal.fire({
 									icon:"success",
 								  	title: "¡Su solicitud ha sido recibida!",
-								  	text: "¡Por favor revise la bandeja de entrada o la carpeta de SPAM de su correo electrónico '.$_POST["emailRecuperarPassword"].' para su cambio de contraseña!"
-								})
+									text: "¡Por favor revise la bandeja de entrada o la carpeta de SPAM de su correo electrónico '.$_POST["emailRecuperarPassword"].' para su cambio de contraseña!",
+									showConfirmButton: true,
+									confirmButtonText: "Cerrar"
+								}).then((result) => {
+									if(result.value){   
+										history.back();
+									} 
+								});
 							</script>';
 						}	
 					}
 				}else{
 
 					echo '<script>
-						swal({
+						Swal.fire({
 							icon:"error",
 						  	title: "¡Error!",
-						  	text: "¡El correo no existe en el sistema"
+						  	text: "¡El correo no existe en el sistema",
+						  	showConfirmButton: true,
+							confirmButtonText: "Cerrar"
+						}).then((result) => {
+							if(result.value){   
+								history.back();
+							} 
 						})
 					</script>';
 
@@ -443,10 +509,16 @@ Class ControladorUsuarios{
 
 			}else{
 				echo'<script>
-					swal({
+					Swal.fire({
 						icon:"error",
 					  	title: "¡Corregir!",
-					  	text: "¡No se permiten caracteres especiales!"
+					  	text: "¡No se permiten caracteres especiales!",
+					  	showConfirmButton: true,
+						confirmButtonText: "Cerrar"
+					}).then((result) => {
+						if(result.value){   
+							history.back();
+						} 
 					})
 				</script>';
 			}

@@ -3,6 +3,11 @@ $valor = $_GET["pagina"];
 $categorias = ControladorCategorias::ctrMostrarCategorias();
 $libros = ControladorLibros::ctrMostrarLibros($valor);
 //echo'<pre>'; print_r($libros); echo'</pre>';
+
+if (count($libros) == 0) {
+    echo '<script>window.location = "'.$ruta.'"</script>';
+    return;
+}
 ?>
 <div class="container">
     <div class="row sidebar-fila">
